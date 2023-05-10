@@ -6,7 +6,7 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/10 13:05:45 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/10 13:19:49 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/10 13:32:56 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=	megaphone
 SRC_FILES 	=	megaphone
 OBJS_DIR	=	obj/
 COMP		=	c++
-CFLAGS		=	-Wall -Werror -Wextra
+CFLAGS		=	-Wall -Werror -Wextra -std=c++98
 RM			=	rm -f
 
 GREEN		= \033[0;32m
