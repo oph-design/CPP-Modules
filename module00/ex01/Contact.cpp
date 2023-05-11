@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/10 18:03:20 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 08:40:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,45 +16,15 @@
 Contact::Contact(void)
 {
 	index = 8;
-	firstname = NULL;
-	lastname = NULL;
-	nickname = NULL;
-	phonenumber = NULL;
-	secret = NULL;
 }
 
 Contact::Contact(int id)
 {
 	index = id;
-	firstname = NULL;
-	lastname = NULL;
-	nickname = NULL;
-	phonenumber = NULL;
-	secret = NULL;
-}
-
-Contact::Contact(const Contact &c)
-{
-	*this = c;
-}
-
-Contact & Contact::operator = (const Contact &c)
-{
-	firstname = c.get_firstname();
-	lastname = c.get_lastname();
-	nickname = c.get_nickname();
-	phonenumber = c.get_phonenumber();
-	secret = c.get_secret();
-	return (*this);
 }
 
 Contact::~Contact(void)
 {
-	delete firstname;
-	delete lastname;
-	delete nickname;
-	delete phonenumber;
-	delete secret;
 }
 
 void Contact::set_firstname(std::string str)

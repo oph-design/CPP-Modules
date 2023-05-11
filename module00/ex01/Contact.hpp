@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:14 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/10 18:00:38 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 08:46:24 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ class Contact
 	public:
 		Contact(void);
 		Contact(int id);
-		Contact(const Contact &c);
-		Contact & operator = (const Contact &c);
 		~Contact(void);
 		void set_firstname(std::string str);
 		void set_lastname(std::string str);
