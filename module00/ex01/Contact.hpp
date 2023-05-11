@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:14 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 08:46:24 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:12:56 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ class Contact
 		std::string	nickname;
 		std::string	phonenumber;
 		std::string	secret;
+		void		format_out(std::string val);
 	public:
 		Contact(void);
 		Contact(int id);

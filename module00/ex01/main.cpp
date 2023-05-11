@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:17 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 09:45:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 10:17:21 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	add_contact(PhoneBook *phonebook)
 	contact.set_phonenumber(get_value("phonenumber"));
 	contact.set_secret(get_value("darkest secret"));
 	(*phonebook).add_to_book(contact, i);
-	(*phonebook).get_contact(i).to_string();
 	if (++i == 8)
 		i = 0;
 }
