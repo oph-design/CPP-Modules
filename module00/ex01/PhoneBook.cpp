@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 08:45:47 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 09:35:33 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,6 @@
 
 PhoneBook::PhoneBook(void)
 {
-	int	i = 0;
-
-	while (i < 8)
-		contacts[i++] = Contact();
 }
 
 PhoneBook::~PhoneBook()
@@ -36,7 +32,11 @@ void PhoneBook::show_book(void)
 	int	i = 0;
 
 	while (i < 8)
-		contacts[i++].preview();
+	{
+		if (contacts[i].get_index() < 8)
+			contacts[i].preview();
+		i++;
+	}
 }
 
 Contact PhoneBook::get_contact(int pos)
