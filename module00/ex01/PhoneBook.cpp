@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 19:13:14 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 20:49:33 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void PhoneBook::show_book(void)
 {
 	int	i = 0;
 
-	std::cout << std::setw(10) << std::setfill(' ') << "index|";
-	std::cout << std::setw(10) << std::setfill(' ') << "firstname|";
-	std::cout << std::setw(10) << std::setfill(' ') << "lastname|";
-	std::cout << std::setw(10) << std::setfill(' ') << "nickname|" << std::endl;
+	std::cout << std::setw(11) << "index|";
+	std::cout << std::setw(11) << "firstname|";
+	std::cout << std::setw(11) << "lastname|";
+	std::cout << std::setw(11) << "nickname|" << std::endl;
 	while (i < 8)
 	{
 		if (contacts[i].get_index() < 8)

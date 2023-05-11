@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:17 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 19:14:34 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 21:04:28 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	main(void)
 	std::string	input_line;
 	PhoneBook	phonebook = PhoneBook();
 
-	while(std::cin)
+	while(1)
 	{
 		std::cout << "Enter command: ";
 		std::getline(std::cin, input_line);
@@ -76,7 +76,7 @@ int	main(void)
 			add_contact(&phonebook);
 		else if (!input_line.compare("SEARCH"))
 			search_pb(phonebook);
-		else if (!input_line.compare("EXIT"))
+		else if (!input_line.compare("EXIT") || !std::cin)
 			break ;
 		else
 			std::cout << "enter ADD, SEARCH or EXIT" << std::endl;
