@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:17 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 10:17:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:14:34 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,17 @@
 std::string	get_value(std::string val_name)
 {
 	std::string	input;
-	std::cout << "enter contacts " << val_name << ":\n";
-	std::getline(std::cin, input);
-	return (input);
+
+	while (1)
+	{
+		std::cout << "enter contacts " << val_name << ": ";
+		std::getline(std::cin, input);
+		if (!input.length())
+			continue ;
+		if (!std::cin)
+			exit(1);
+		return (input);
+	}
 }
 
 void	add_contact(PhoneBook *phonebook)
@@ -39,12 +47,20 @@ void	add_contact(PhoneBook *phonebook)
 
 void	search_pb(PhoneBook phonebook)
 {
+	int			index;
 	std::string	input;
 
 	phonebook.show_book();
-	std::cout << "enter index of desired contact:" << "\n";
+	std::cout << "enter index of desired contact: ";
 	std::getline(std::cin, input);
-	phonebook.get_contact(std::stoi(input)).to_string();
+	if (!std::cin)
+		exit(1);
+	if (input.length() > 1 || !std::isdigit(input.at(0)))
+		return ((void)(std::cout << "please enter a single digit" << std::endl));
+	index = std::stoi(input);
+	if (index > 7 || phonebook.get_contact(index).get_index() == 8)
+		return ((void)(std::cout << "no contact with this index" << std::endl));
+	phonebook.get_contact(index).to_string();
 }
 
 int	main(void)
@@ -52,8 +68,9 @@ int	main(void)
 	std::string	input_line;
 	PhoneBook	phonebook = PhoneBook();
 
-	while(1)
+	while(std::cin)
 	{
+		std::cout << "Enter command: ";
 		std::getline(std::cin, input_line);
 		if (!input_line.compare("ADD"))
 			add_contact(&phonebook);
@@ -62,7 +79,7 @@ int	main(void)
 		else if (!input_line.compare("EXIT"))
 			break ;
 		else
-			std::cout << "enter ADD, SEARCH or EXIT" << "\n";
+			std::cout << "enter ADD, SEARCH or EXIT" << std::endl;
 	}
 	return (0);
 }

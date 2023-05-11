@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 10:17:10 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:13:39 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	Contact::format_out(std::string val)
 	if (len < 10)
 		while (++len < 10)
 			std::cout << " ";
-	std::cout << val.substr(0, 9);
+	std::cout << val.substr(0, 8);
 	if (val.length() > 10)
 		std::cout << ".";
 	if (val.length() == 10)
@@ -83,10 +83,9 @@ void	Contact::preview(void)
 
 void	Contact::to_string(void)
 {
-	std::cout << index << "\n";
-	std::cout << firstname << "\n";
-	std::cout << lastname << "\n";
-	std::cout << nickname << "\n";
-	std::cout << phonenumber << "\n";
-	std::cout << secret << "\n";
+	std::cout << "firstname:	" << firstname << std::endl;
+	std::cout << "lastname:	" << lastname << std::endl;
+	std::cout << "nickname:	" << nickname << std::endl;
+	std::cout << "phonenumber:	" << phonenumber << std::endl;
+	std::cout << "darkest secret:	" << secret << std::endl;
 }

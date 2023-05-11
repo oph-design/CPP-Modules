@@ -6,19 +6,20 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 13:31:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/11 10:16:17 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/11 19:13:14 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 #include <iostream>
+#include <iomanip>
 
 PhoneBook::PhoneBook(void)
 {
 }
 
-PhoneBook::~PhoneBook()
+PhoneBook::~PhoneBook(void)
 {
 }
 
@@ -31,10 +32,10 @@ void PhoneBook::show_book(void)
 {
 	int	i = 0;
 
-	std::cout << "    index" << "|";
-	std::cout << "firstname" << "|";
-	std::cout << " lastname" << "|";
-	std::cout << " nickname" << "|" << "\n";
+	std::cout << std::setw(10) << std::setfill(' ') << "index|";
+	std::cout << std::setw(10) << std::setfill(' ') << "firstname|";
+	std::cout << std::setw(10) << std::setfill(' ') << "lastname|";
+	std::cout << std::setw(10) << std::setfill(' ') << "nickname|" << std::endl;
 	while (i < 8)
 	{
 		if (contacts[i].get_index() < 8)
