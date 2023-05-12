@@ -6,12 +6,14 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:40:06 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/12 14:17:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:44:15 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 #include <iostream>
+#include <ctime>
+#include <iomanip>
 
 int	Account::_nbAccounts;
 int	Account::_totalAmount;
@@ -62,7 +64,25 @@ int	Account::getNbWithdrawals( void )
 
 void	Account::_displayTimestamp( void )
 {
-	std::cout << "[00000000_000000] ";
+	const std::time_t now = time(0);
+	struct tm *time = std::localtime(&now);
+
+	std::cout << "[" << (time->tm_year + 1900);
+	if (time->tm_mon + 1 < 10)
+		std::cout << "0";
+	std::cout << (time->tm_mon + 1);
+	if (time->tm_mday < 10)
+		std::cout << "0";
+	std::cout << time->tm_mday;
+	if (time->tm_hour < 10)
+		std::cout << "0";
+	std::cout << "_" << time->tm_hour;
+	if (time->tm_min < 10)
+		std::cout << "0";
+	std::cout << time->tm_min;
+	if (time->tm_sec < 10)
+		std::cout << "0";
+	std::cout << time->tm_sec << "] ";
 }
 
 void	Account::displayAccountsInfos( void )
