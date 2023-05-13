@@ -168,7 +168,7 @@ for i in "${@:2}"; do
     if [ $((c%2)) -eq 0 ]
     then
 		j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
-        echo "$prev $1::get$j(void) const\n{\n\treturn _$i;\n}" >> $PWD/$1.cpp
+        echo "$prev $1::get$j(void) const\n{\n\treturn (_$i);\n}" >> $PWD/$1.cpp
 
 
     else
