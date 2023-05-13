@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 14:55:00 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/13 15:17:43 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/13 15:29:31 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ Zombie::Zombie(std::string newName)
 
 Zombie::~Zombie(void)
 {
-	std::cout << _name << " rotted away";
+	std::cout << _name << " rotted away" << std::endl;
 }
 
 Zombie&	Zombie::operator=(const Zombie& rhs)

@@ -6,12 +6,12 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/13 15:10:19 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/13 15:10:45 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/13 15:31:22 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	test
-SRC_FILES 	=	main newZombie randomChump Zombie
+SRC_FILES 	=	newZombie randomChump Zombie main
 OBJS_DIR	=	obj/
 COMP		=	c++
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98
