@@ -1,0 +1,61 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/13 14:55:00 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/13 15:17:43 by oheinzel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "Zombie.hpp"
+
+Zombie::Zombie(void)
+	: _name(0)
+{
+
+}
+
+Zombie::Zombie(const Zombie& rhs)
+{
+	*this = rhs;
+}
+
+Zombie::Zombie(std::string newName)
+	: _name(newName)
+{
+
+}
+
+Zombie::~Zombie(void)
+{
+	std::cout << _name << " rotted away";
+}
+
+Zombie&	Zombie::operator=(const Zombie& rhs)
+{
+	this->_name = rhs.getName();
+	return *this;
+}
+
+std::string Zombie::getName(void) const
+{
+	return _name;
+}
+
+void Zombie::setName(std::string newName)
+{
+	_name = newName;
+}
+
+void Zombie::output(void)
+{
+	std::cout << "name : " << _name << std::endl;
+}
+
+void Zombie::announce(void)
+{
+	std::cout << _name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}

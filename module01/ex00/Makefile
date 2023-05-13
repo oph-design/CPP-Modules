@@ -5,13 +5,13 @@
 #                                                     +:+ +:+         +:+      #
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/05/12 09:47:28 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/13 15:07:52 by oheinzel         ###   ########.fr        #
+#    Created: 2023/05/13 15:10:19 by oheinzel          #+#    #+#              #
+#    Updated: 2023/05/13 15:10:45 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	test
-SRC_FILES 	=	Account tests
+SRC_FILES 	=	main newZombie randomChump Zombie
 OBJS_DIR	=	obj/
 COMP		=	c++
 CFLAGS		=	-Wall -Werror -Wextra -std=c++98
