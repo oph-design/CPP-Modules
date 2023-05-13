@@ -151,7 +151,17 @@ echo "" >> $PWD/$1.cpp
 echo "}\n" >> $PWD/$1.cpp
 
 echo "$1&\t$1::operator=(const $1& rhs)\n{" >> $PWD/$1.cpp
-echo "\treturn *this;" >> $PWD/$1.cpp
+
+for i in "${@:2}"; do
+    if [ $((c%2)) -eq 0 ]
+    then
+		j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
+        echo "\tthis->_$i = rhs.get$j();" >> $PWD/$1.cpp
+    fi
+    c=$((c+1))
+done
+
+echo "\treturn (*this);" >> $PWD/$1.cpp
 echo "}\n" >> $PWD/$1.cpp
 
 for i in "${@:2}"; do
