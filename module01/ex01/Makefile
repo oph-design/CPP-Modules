@@ -1,8 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/14 13:44:28 by oheinzel          #+#    #+#              #
+#    Updated: 2023/05/14 13:44:32 by oheinzel         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		=	test
 SRC_FILES 	=	main Zombie zombieHorde
 OBJS_DIR	=	obj/
 COMP		=	c++
-CFLAGS		=	-Wall -Werror -Wextra -std=c++98
+CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98
 RM			=	rm -f
 
 GREEN		= \033[0;32m

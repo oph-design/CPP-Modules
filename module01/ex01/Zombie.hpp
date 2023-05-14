@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 14:55:16 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/13 18:48:34 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/13 19:16:17 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ class Zombie
 		void announce(void);
 };
 
-Zombie	*zombieHorde(int N, std::string name);
+Zombie*	zombieHorde(int N, std::string name);
 
 #endif

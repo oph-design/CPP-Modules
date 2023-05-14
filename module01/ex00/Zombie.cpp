@@ -6,14 +6,13 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 14:55:00 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/13 18:45:24 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/14 13:41:24 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
 Zombie::Zombie(void)
-	: _name(0)
 {
 
 }
