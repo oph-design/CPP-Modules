@@ -6,21 +6,11 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 14:55:00 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/14 13:38:51 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/14 15:29:19 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
-
-Zombie::Zombie(void)
-{
-
-}
-
-Zombie::Zombie(const Zombie& rhs)
-{
-	*this = rhs;
-}
 
 Zombie::Zombie(std::string newName)
 	: _name(newName)
@@ -33,12 +23,6 @@ Zombie::~Zombie(void)
 	std::cout << _name << " rotted away" << std::endl;
 }
 
-Zombie&	Zombie::operator=(const Zombie& rhs)
-{
-	this->_name = rhs.getName();
-	return (*this);
-}
-
 std::string Zombie::getName(void) const
 {
 	return (_name);
@@ -47,11 +31,6 @@ std::string Zombie::getName(void) const
 void Zombie::setName(std::string newName)
 {
 	_name = newName;
-}
-
-void Zombie::output(void)
-{
-	std::cout << "name : " << _name << std::endl;
 }
 
 void Zombie::announce(void)

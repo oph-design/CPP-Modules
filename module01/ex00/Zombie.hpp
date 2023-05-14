@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 14:55:16 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/13 15:17:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/14 15:30:10 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@ class Zombie
 		std::string	_name;
 
 	public:
-		Zombie(void);
-		Zombie(const Zombie &rhs);
 		Zombie(std::string newName);
 		~Zombie(void);
-		Zombie& operator=(const Zombie &rhs);
 		std::string getName() const;
 		void setName(std::string _name);
-		void output(void);
 		void announce(void);
 };
 
