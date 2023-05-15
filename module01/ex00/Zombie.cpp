@@ -6,11 +6,16 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/13 14:55:00 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/14 15:29:44 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/15 09:18:02 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+
+Zombie::Zombie(void)
+{
+
+}
 
 Zombie::Zombie(std::string newName)
 	: _name(newName)

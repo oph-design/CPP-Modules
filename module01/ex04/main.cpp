@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 15:34:56 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/14 20:43:18 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/15 09:51:07 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,21 @@ void	writeAndReplace(std::ofstream& outfile, std::string search,
 
 int	main(int argc, char **argv)
 {
-	std::string		line;
 	std::ifstream	infile;
 	std::ofstream	outfile;
+	std::string		line;
+	std::string		out = std::string(argv[1]).append(".replace");
 
 	if (argc != 4)
-		return (std::cerr << "wrong nbr of arguments\n", 1);
+		return (std::cerr << "wrong nbr of arguments" << std::endl, 1);
+	if (!std::string(argv[2]).length() || !std::string(argv[3]).length())
+		return (std::cerr << "empty string" << std::endl, 1);
 	infile.open(argv[1]);
-	outfile.open(std::string(argv[1]) + ".replace");
-	if (!infile.is_open() || !outfile.is_open())
-		return (std::cerr << "could not open file\n", 1);
+	if (!infile.is_open())
+		return (std::cerr << "could not open file" << std::endl, 1);
+	outfile.open(out.c_str());
+	if (!outfile.is_open())
+		return (std::cerr << "could not open file" << std::endl, 1);
 	while (std::getline(infile, line))
 		writeAndReplace(outfile, argv[2], argv[3], line);
 	infile.close();

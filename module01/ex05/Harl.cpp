@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 20:35:52 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/14 21:29:05 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/15 09:57:53 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,9 @@ void Harl::complain(std::string level)
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*funcs[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
-	while (i < 4 && level.compare(levels[++i]));
-	if (i > 3)
-		return ((void)(std::cerr << "Level not known\n"));
-	(this->*funcs[i])();
+	while (i < 4 && level.compare(levels[i]))
+		i++;
+	if (i < 4)
+		return ((this->*funcs[i])());
+	std::cerr << "Level not known" << std::endl;
 }
