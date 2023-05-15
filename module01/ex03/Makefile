@@ -6,7 +6,7 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/14 14:50:36 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/15 08:45:03 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,9 @@ WHITE		= \033[0m
 SRCS 		= 	$(addsuffix .cpp, $(SRC_FILES))
 OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
-OBJSF		=	.cache_exists
-
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS_DIR) $(OBJS)
 			@$(COMP) $(OBJS) -o $(NAME)
 			@echo "$(GREEN)exercise compiled!$(WHITE)"
 
@@ -36,7 +34,7 @@ $(OBJS_DIR)%.o : $(SRCS_DIR)%.cpp | $(OBJSF)
 			@echo "$(CYAN)Compiling $(WHITE): $<"
 			@$(COMP) $(CFLAGS) -c $< -o $@
 
-$(OBJSF):
+$(OBJS_DIR):
 			@mkdir -p $(OBJS_DIR)
 
 clean:
