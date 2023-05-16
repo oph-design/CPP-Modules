@@ -6,14 +6,14 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/15 12:54:02 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/16 20:24:15 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	test
 SRCS_DIR	=	src/
-SRC_FILES 	=	main
-OBJ_DIR		=	obj/
+SRC_FILES 	=	main Fixed
+OBJS_DIR	=	obj/
 COMP		=	c++
 CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98
 RM			=	rm -f
@@ -22,12 +22,12 @@ GREEN		= \033[0;32m
 CYAN		= \033[0;36m
 WHITE		= \033[0m
 
-SRCS 		= 	$(addprefix $(SRC_DIR), $(addsuffix .cpp, $(SRC_FILES)))
-OBJS 		= 	$(addprefix $(OBJ_DIR), $(addsuffix .o, $(SRC_FILES)))
+SRCS 		= 	$(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(SRC_FILES)))
+OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ_DIR) $(OBJS)
+$(NAME):	$(OBJS_DIR) $(OBJS)
 			@$(COMP) $(OBJS) -o $(NAME)
 			@echo "$(GREEN)exercise compiled!$(WHITE)"
 
