@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/14 15:34:56 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/15 09:51:07 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/15 13:32:24 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,11 @@ int	main(int argc, char **argv)
 	std::ifstream	infile;
 	std::ofstream	outfile;
 	std::string		line;
-	std::string		out = std::string(argv[1]).append(".replace");
+	std::string		out;
 
 	if (argc != 4)
 		return (std::cerr << "wrong nbr of arguments" << std::endl, 1);
+	out = std::string(argv[1]).append(".replace");
 	if (!std::string(argv[2]).length() || !std::string(argv[3]).length())
 		return (std::cerr << "empty string" << std::endl, 1);
 	infile.open(argv[1]);

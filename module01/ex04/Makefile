@@ -6,7 +6,7 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/15 09:43:59 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/15 13:33:46 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ clean:
 
 fclean:		clean
 			@$(RM) -f $(NAME)
+			@$(RM) -f $(FILE)
 			@echo "$(GREEN)project cleaned!$(WHITE)"
 
 re:			fclean all

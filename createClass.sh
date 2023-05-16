@@ -64,7 +64,7 @@ for i in "${@:2}"; do
     if [ $((c%2)) -eq 0 ]
     then
 		j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
-        printf "\t\tvoid set$j(${prev} _$i);\n" >> $PWD/$1.hpp
+        printf "\t\tvoid set$j(${prev} new$j);\n" >> $PWD/$1.hpp
 
     else
 
