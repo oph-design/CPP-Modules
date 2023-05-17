@@ -13,7 +13,7 @@ class Point
 	public:
 		Point(void);
 		Point(const Point &rhs);
-		Point(Fixed const newX, Fixed const newY);
+		Point(float const newX, float const newY);
 		~Point(void);
 		Point& operator=(const Point &rhs);
 		Fixed const getX(void) const;

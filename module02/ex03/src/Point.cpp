@@ -19,11 +19,12 @@ Point::Point(void)
 }
 
 Point::Point(const Point& rhs)
+	:_x(rhs._x), _y(rhs._y)
 {
-	*this = rhs;
+
 }
 
-Point::Point(Fixed const newX, Fixed const newY)
+Point::Point(float const newX, float const newY)
 	: _x(newX), _y(newY)
 {
 
