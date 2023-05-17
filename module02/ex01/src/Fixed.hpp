@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:50:39 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/16 20:33:46 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:48:23 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FIXED_H
 # include <iostream>
 # include <string>
+# include <cmath>
 
 class Fixed
 {

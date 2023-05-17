@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:50:39 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/17 13:20:25 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/17 18:49:23 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FIXED_H
 # include <iostream>
 # include <string>
+# include <cmath>
 
 # ifndef MUTE
 #  define MUTE 0
