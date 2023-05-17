@@ -15,7 +15,7 @@ int main( void ) {
 	std::cout << "addition:\t" << (a + b) << std::endl;
 	std::cout << "subtraction:\t" << (a - b) << std::endl;
 	std::cout << "multiplication:\t" << (a * b) << std::endl;
-	std::cout << "division:\t" << (a / b) << std::endl;
+	std::cout << "division:\t" << (a / Fixed(0)) << std::endl;
 	std::cout << "increase post:\t" << a++ << std::endl;
 	std::cout << "increase pre:\t" << ++a << std::endl;
 	std::cout << "decrease post:\t" << a++ << std::endl;
