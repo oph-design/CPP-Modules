@@ -2,6 +2,7 @@
 *.d
 .vscode/
 *.dSYM
+*/*/test
 
 # Compiled Object files
 *.slo
