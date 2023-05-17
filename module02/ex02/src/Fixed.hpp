@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 14:50:39 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/16 22:28:03 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/17 09:03:18 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define FIXED_H
 # include <iostream>
 # include <string>
+
+# ifndef MUTE
+#  define MUTE 0
+# endif
 
 class Fixed
 {
@@ -35,10 +39,10 @@ class Fixed
 		bool operator<=(const Fixed &rhs);
 		bool operator==(const Fixed &rhs);
 		bool operator!=(const Fixed &rhs);
-		Fixed& operator+(const Fixed &rhs);
-		Fixed& operator-(const Fixed &rhs);
-		Fixed& operator*(const Fixed &rhs);
-		Fixed& operator/(const Fixed &rhs);
+		Fixed operator+(const Fixed &rhs);
+		Fixed operator-(const Fixed &rhs);
+		Fixed operator*(const Fixed &rhs);
+		Fixed operator/(const Fixed &rhs);
 		Fixed& operator++();
 		Fixed operator++(int);
 		Fixed& operator--();
