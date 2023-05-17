@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 13:17:16 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/17 13:29:19 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:05:58 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 int main( void )
 {
-	std::cout << bsp(Point(1,1), Point(2,1), Point(1,2), Point(1,1)) << std::endl;
+	std::cout << bsp(Point(2,1), Point(1,1), Point(1,2), Point(1,1)) << std::endl;
 }
