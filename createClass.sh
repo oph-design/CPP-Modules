@@ -75,13 +75,11 @@ for i in "${@:2}"; do
     c=$((c+1))
 done
 
-printf "    std::string toString(void);\n" >> $PWD/$1.hpp
-
 echo "};" >> $PWD/$1.hpp
 
 echo "" >> $PWD/$1.hpp
-echo "std::ostream& operator<<(std::ostream& out, const $1& rhs);"
-echo ""
+echo "std::ostream& operator<<(std::ostream& out, const $1& rhs);" >> $PWD/$1.hpp
+echo "" >> $PWD/$1.hpp
 
 echo "#endif" >> $PWD/$1.hpp
 
@@ -190,7 +188,7 @@ done
 
 echo "" >> $PWD/$1.cpp
 echo "std::ostream& operator<<(std::ostream& out, const $1& rhs) {" >> $PWD/$1.cpp
-echo "out << \"---------------\\\n\";"
+echo "  out << \"---------------\\\n\";" >> $PWD/$1.cpp
 for i in "${@:2}"; do
     if [ $((c%2)) -eq 0 ]
     then
@@ -199,7 +197,7 @@ for i in "${@:2}"; do
     fi
     c=$((c+1))
 done
-echo "  out << \"---------------\" << std::endl;"
+echo "  out << \"---------------\" << std::endl;" >> $PWD/$1.cpp
 echo "  return (out);" >> $PWD/$1.cpp
 
 echo "}" >> $PWD/$1.cpp
