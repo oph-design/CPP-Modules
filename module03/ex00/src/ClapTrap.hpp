@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:39:45 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 18:22:06 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:53:07 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class ClapTrap {
     int _hitPoints;
     int _energyPoints;
     int _attackDamage;
+    void outOfEnergy(void);
 
  public:
     ClapTrap(void);

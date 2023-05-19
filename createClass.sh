@@ -190,15 +190,16 @@ done
 
 echo "" >> $PWD/$1.cpp
 echo "std::ostream& operator<<(std::ostream& out, const $1& rhs) {" >> $PWD/$1.cpp
+echo "out << \"---------------\\\n\";"
 for i in "${@:2}"; do
     if [ $((c%2)) -eq 0 ]
     then
         j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
-        echo "  out << \"$j: \" << _$i << std::endl;" >> $PWD/$1.cpp
+        echo "  out << \"$j: \" << rhs.get$j() << \"\\\n\";" >> $PWD/$1.cpp
     fi
     c=$((c+1))
 done
-
+echo "  out << \"---------------\" << std::endl;"
 echo "  return (out);" >> $PWD/$1.cpp
 
 echo "}" >> $PWD/$1.cpp

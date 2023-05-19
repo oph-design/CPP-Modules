@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:39:34 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 18:28:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:56:54 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,35 +65,44 @@ void ClapTrap::setAttackDamage(int newAttackDamage) {
   _attackDamage = newAttackDamage;
 }
 
+void ClapTrap::outOfEnergy(void) {
+  std::cout << "\033[0;31m" << _name << " is out of energy!" << std::endl;
+  std::cout << "\033[0m";
+}
+
 void ClapTrap::attack(const std::string& target) {
   if (_energyPoints < 1 || _hitPoints < 1)
-    return ((void)(std::cout << _name << " out of energy" << std::endl));
+    return (outOfEnergy());
   _energyPoints -= 1;
-  std::cout << _name << " attacks " << target;
-  std::cout << " causing " << _attackDamage << " points of damage!";
+  std::cout << "\033[0;32m" << _name << " attacks " << target << " causing ";
+  std::cout << _attackDamage << " points of damage!" << std::endl;
+  std::cout << "\033[0m";
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
   _hitPoints -= amount;
   if (_hitPoints < 0)
     _hitPoints = 0;
-  std::cout << _name << " got attacked";
-  std::cout << " taking " << amount << " points of damage!";
+  std::cout << "\033[0;33m" << _name << " got attacked";
+  std::cout << " taking " << amount << " points of damage!" << std::endl;
+  std::cout << "\033[0m";
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
   if (_energyPoints < 1 || _hitPoints < 1)
-    return ((void)(std::cout << _name << " out of energy" << std::endl));
+    return (outOfEnergy());
   _energyPoints -= 1;
-  std::cout << _name << " repaires itself";
-  std::cout << " regaining " << amount << " of hitPoints!";
+  std::cout << "\033[0;32m" << _name << " repaires itself";
+  std::cout << " regaining " << amount << " of hitPoints!" << std::endl;
+  std::cout << "\033[0m";
 }
 
-std::ostream& operator<<(std::ostream &out, const ClapTrap &rhs)
-{
-	out << "name: " << _name;
-  out << "EnergyPoints: " << _energyPoints;
-  out << "HitPoints: " << _hitPoints;
-  out << "AttackDamage: " << _attackDamage;
-	return (out);
+std::ostream& operator<<(std::ostream &out, const ClapTrap &rhs) {
+  out << "---------------\n";
+  out << "name: " << rhs.getName() << "\n";
+  out << "EnergyPoints: " << rhs.getEnergyPoints() << "\n";
+  out << "HitPoints: " << rhs.getHitPoints() << "\n";
+  out << "AttackDamage: " << rhs.getAttackDamage() << "\n";
+  out << "---------------" << std::endl;
+  return (out);
 }
