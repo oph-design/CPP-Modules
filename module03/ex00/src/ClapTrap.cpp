@@ -6,27 +6,29 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 16:39:34 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 17:11:03 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/19 18:28:21 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void)
-  : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  : _name("ClapTrap"), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  std::cout << "Default Constructor called" << std::endl;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& rhs) {
+  std::cout << "Copy Constructor called" << std::endl;
   *this = rhs;
 }
 
-ClapTrap::ClapTrap(std::string newName, int newHitPoints,
-                int newEnergyPoints, int newAttackDamage)
-                :_name(newName), _hitPoints(newHitPoints),
-                _energyPoints(newEnergyPoints), _attackDamage(newAttackDamage) {
+ClapTrap::ClapTrap(std::string newName)
+  :_name(newName), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
+  std::cout << "Parameterized Constructor called" << std::endl;
 }
 
 ClapTrap::~ClapTrap(void) {
+  std::cout << "Destructor called" << std::endl;
 }
 
 ClapTrap&  ClapTrap::operator=(const ClapTrap& rhs) {
@@ -85,4 +87,13 @@ void ClapTrap::beRepaired(unsigned int amount) {
   _energyPoints -= 1;
   std::cout << _name << " repaires itself";
   std::cout << " regaining " << amount << " of hitPoints!";
+}
+
+std::ostream& operator<<(std::ostream &out, const ClapTrap &rhs)
+{
+	out << "name: " << _name;
+  out << "EnergyPoints: " << _energyPoints;
+  out << "HitPoints: " << _hitPoints;
+  out << "AttackDamage: " << _attackDamage;
+	return (out);
 }

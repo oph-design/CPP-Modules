@@ -80,6 +80,8 @@ printf "    std::string toString(void);\n" >> $PWD/$1.hpp
 echo "};" >> $PWD/$1.hpp
 
 echo "" >> $PWD/$1.hpp
+echo "std::ostream& operator<<(std::ostream& out, const $1& rhs);"
+echo ""
 
 echo "#endif" >> $PWD/$1.hpp
 
@@ -187,19 +189,17 @@ for i in "${@:2}"; do
 done
 
 echo "" >> $PWD/$1.cpp
-echo "std::string $1::toString(void) {" >> $PWD/$1.cpp
-echo "  std::string string = \"*$1*\\\n\";" >> $PWD/$1.cpp
-echo ""
-
+echo "std::ostream& operator<<(std::ostream& out, const $1& rhs) {" >> $PWD/$1.cpp
 for i in "${@:2}"; do
     if [ $((c%2)) -eq 0 ]
     then
-        echo "  string = string + \"$i : \" + std::to_string(_$i) + \"\\\n\";" >> $PWD/$1.cpp
+        j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
+        echo "  out << \"$j: \" << _$i << std::endl;" >> $PWD/$1.cpp
     fi
     c=$((c+1))
 done
 
-echo "  return (string);" >> $PWD/$1.cpp
+echo "  return (out);" >> $PWD/$1.cpp
 
 echo "}" >> $PWD/$1.cpp
 
