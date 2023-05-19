@@ -6,17 +6,17 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/16 15:58:44 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/19 16:18:16 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	test
+NAME			=	test
 SRCS_DIR	=	src/
-SRC_FILES 	=	main
+SRC_FILES	=	main
 OBJS_DIR	=	obj/
-COMP		=	c++
+COMP			=	c++
 CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98
-RM			=	rm -f
+RM				=	rm -f
 
 GREEN		= \033[0;32m
 CYAN		= \033[0;36m

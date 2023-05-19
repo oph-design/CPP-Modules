@@ -6,17 +6,17 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/16 15:58:44 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/19 16:15:27 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	test
+NAME			=	test
 SRCS_DIR	=	src/
-SRC_FILES 	=	main
+SRC_FILES =	main ClapTrap
 OBJS_DIR	=	obj/
-COMP		=	c++
+COMP			=	c++
 CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98
-RM			=	rm -f
+RM				=	rm -f
 
 GREEN		= \033[0;32m
 CYAN		= \033[0;36m
@@ -27,7 +27,7 @@ OBJS 		= 	$(addprefix $(OBJS_DIR), $(addsuffix .o, $(SRC_FILES)))
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS_DIR) $(OBJS)
+$(NAME): $(OBJS_DIR) $(OBJS)
 			@$(COMP) $(OBJS) -o $(NAME)
 			@echo "$(GREEN)exercise compiled!$(WHITE)"
 
@@ -42,11 +42,11 @@ clean:
 			@$(RM) -rf $(OBJS_DIR)
 			@echo "$(GREEN)O-files removed!$(WHITE)"
 
-fclean:		clean
+fclean:	clean
 			@$(RM) -f $(NAME)
 			@echo "$(GREEN)project cleaned!$(WHITE)"
 
-re:			fclean all
+re:	fclean all
 			@echo "$(GREEN)exercise rebuild!$(WHITE)"
 
 .PHONY:		all clean fclean re

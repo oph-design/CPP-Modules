@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ClapTrap.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/19 16:39:34 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/19 17:11:03 by oheinzel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap(void)
-  : _name(0), _hitPoints(0), _energyPoints(0), _attackDamage(0) {
+  : _name(""), _hitPoints(10), _energyPoints(10), _attackDamage(0) {
 }
 
 ClapTrap::ClapTrap(const ClapTrap& rhs) {
@@ -51,12 +63,26 @@ void ClapTrap::setAttackDamage(int newAttackDamage) {
   _attackDamage = newAttackDamage;
 }
 
-std::string ClapTrap::toString(void) {
-  std::string string = "ClapTrap:\n";
-  string = string + "name : " + _name + "\n";
-  string = string + "hitPoints : " + std::to_string(_hitPoints) + "\n";
-  string = string + "energyPoints : " + std::to_string(_energyPoints) + "\n";
-  string = string + "attackDamage : " + std::to_string(_attackDamage) + "\n";
-  return (string);
+void ClapTrap::attack(const std::string& target) {
+  if (_energyPoints < 1 || _hitPoints < 1)
+    return ((void)(std::cout << _name << " out of energy" << std::endl));
+  _energyPoints -= 1;
+  std::cout << _name << " attacks " << target;
+  std::cout << " causing " << _attackDamage << " points of damage!";
 }
 
+void ClapTrap::takeDamage(unsigned int amount) {
+  _hitPoints -= amount;
+  if (_hitPoints < 0)
+    _hitPoints = 0;
+  std::cout << _name << " got attacked";
+  std::cout << " taking " << amount << " points of damage!";
+}
+
+void ClapTrap::beRepaired(unsigned int amount) {
+  if (_energyPoints < 1 || _hitPoints < 1)
+    return ((void)(std::cout << _name << " out of energy" << std::endl));
+  _energyPoints -= 1;
+  std::cout << _name << " repaires itself";
+  std::cout << " regaining " << amount << " of hitPoints!";
+}

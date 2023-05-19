@@ -10,7 +10,7 @@ echo "# include <string>" >> $PWD/$1.hpp
 
 echo "" >> $1.hpp
 
-echo "class $1{" >> $PWD/$1.hpp
+echo "class $1 {" >> $PWD/$1.hpp
 
 printf " private:\n" >> $PWD/$1.hpp
 c=1
@@ -168,10 +168,7 @@ for i in "${@:2}"; do
     then
 		j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
         echo "$prev $1::get$j(void) const {\n  return (_$i);\n}" >> $PWD/$1.cpp
-
-
     else
-
         prev=$i
     fi
     c=$((c+1))
@@ -183,9 +180,7 @@ for i in "${@:2}"; do
     then
 		j="$(tr "a-z" "A-Z" <<< ${i:0:1})${i:1}"
         echo "void $1::set$j($prev new$j) {\n  _$i = new$j;\n}" >> $PWD/$1.cpp
-
     else
-
         prev=$i
     fi
     c=$((c+1))
@@ -193,7 +188,8 @@ done
 
 echo "" >> $PWD/$1.cpp
 echo "std::string $1::toString(void) {" >> $PWD/$1.cpp
-echo "  std::string string = \"$1:\\\n\";" >> $PWD/$1.cpp
+echo "  std::string string = \"*$1*\\\n\";" >> $PWD/$1.cpp
+echo ""
 
 for i in "${@:2}"; do
     if [ $((c%2)) -eq 0 ]
