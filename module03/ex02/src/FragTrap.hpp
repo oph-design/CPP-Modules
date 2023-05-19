@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 16:11:00 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 20:32:17 by oheinzel         ###   ########.fr       */
+/*   Created: 2023/05/19 20:29:12 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/19 20:29:43 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef FRAGTRAP_H
+# define FRAGTRAP_H
+
+# include <iostream>
+# include <string>
+
 #include "ClapTrap.hpp"
-#include "ScavTrap.hpp"
 
-int main(void) {
-  ScavTrap Scavtrap;
-  ScavTrap David("David");
-  ScavTrap Jackson("Jackson");
+class FragTrap : public ClapTrap{
+ public:
+    FragTrap(void);
+    FragTrap(std::string newName);
+    FragTrap(const FragTrap &rhs);
+    ~FragTrap(void);
+    FragTrap& operator=(const FragTrap &rhs);
 
-  std::cout << David;
-  Scavtrap.attack("David");
-  David.attack("Jackson");
-  David.beRepaired(10);
-  David.takeDamage(5);
-  David.guardGate();
-  std::cout << David;
-  Jackson.setEnergyPoints(0);
-  Jackson.attack("Claptrap");
-}
+    void highFiveGuys(void);
+};
+
+std::ostream& operator<<(std::ostream& out, const FragTrap& rhs);
+
+#endif

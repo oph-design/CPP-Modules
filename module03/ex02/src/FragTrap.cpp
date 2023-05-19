@@ -1,47 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.cpp                                       :+:      :+:    :+:   */
+/*   FragTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/19 19:22:59 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 20:11:40 by oheinzel         ###   ########.fr       */
+/*   Created: 2023/05/19 20:29:05 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/19 20:34:33 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-ScavTrap::ScavTrap(void) {
-  std::cout << "Default Constructor \033[1m(from Scavtrap)\033[0m called!";
+FragTrap::FragTrap(void) {
+  std::cout << "Default Constructor \033[1m(from Fragtrap)\033[0m called!";
   std::cout << std::endl;
-  _name = "ScavTrap";
+  _name = "FragTrap";
   _hitPoints = 100;
-  _energyPoints = 50;
+  _energyPoints = 100;
   _attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(std::string newName) {
-  std::cout << "Parameterized Constructor \033[1m(from Scavtrap)\033[0m";
+FragTrap::FragTrap(std::string newName) {
+  std::cout << "Parameterized Constructor \033[1m(from Fragtrap)\033[0m";
   std::cout << " called!" << std::endl;
   _name = newName;
   _hitPoints = 100;
-  _energyPoints = 50;
-  _attackDamage = 20;
+  _energyPoints = 100;
+  _attackDamage = 30;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& rhs) {
-  std::cout << "Copy Constructor \033[1m(from Scavtrap)\033[0m called!";
+FragTrap::FragTrap(const FragTrap& rhs) {
+  std::cout << "Copy Constructor \033[1m(from Fragtrap)\033[0m called!";
   std::cout << std::endl;
   *this = rhs;
 }
 
-ScavTrap::~ScavTrap(void) {
-  std::cout << "Destructor \033[1m(from Scavtrap)\033[0m called!";
+FragTrap::~FragTrap(void) {
+  std::cout << "Destructor \033[1m(from Fragtrap)\033[0m called!";
   std::cout << std::endl;
 }
 
-ScavTrap& ScavTrap::operator=(const ScavTrap& rhs) {
+FragTrap& FragTrap::operator=(const FragTrap& rhs) {
   this->_name = rhs.getName();
   this->_hitPoints = rhs.getHitPoints();
   this->_energyPoints = rhs.getEnergyPoints();
@@ -49,23 +49,14 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& rhs) {
   return (*this);
 }
 
-void ScavTrap::attack(const std::string& target) {
+void FragTrap::highFiveGuys(void) {
   if (_energyPoints < 1 || _hitPoints < 1)
     return (outOfEnergy());
-  _energyPoints -= 1;
-  std::cout << "\033[0;32m" << _name << ", a ScavTrap Object, attacks ";
-  std::cout << target << " causing " << _attackDamage << " points of damage!";
-  std::cout << std::endl << "\033[0m";
+  std::cout << "\033[0;32m" << _name << " is asking for a High Five ... ";
+  std::cout << "a positive High Five" << "\033[0m" << std::endl;
 }
 
-void ScavTrap::guardGate(void) {
-  if (_energyPoints < 1 || _hitPoints < 1)
-    return (outOfEnergy());
-  std::cout << "\033[0;32m" << _name << " is now in Gate-Keeper-Mode ... ";
-  std::cout << "whatever that means" << "\033[0m" << std::endl;
-}
-
-std::ostream& operator<<(std::ostream& out, const ScavTrap& rhs) {
+std::ostream& operator<<(std::ostream& out, const FragTrap& rhs) {
   out << "---------------\n";
   out << "name: " << rhs.getName() << "\n";
   out << "EnergyPoints: " << rhs.getEnergyPoints() << "\n";
@@ -74,3 +65,4 @@ std::ostream& operator<<(std::ostream& out, const ScavTrap& rhs) {
   out << "---------------" << std::endl;
   return (out);
 }
+
