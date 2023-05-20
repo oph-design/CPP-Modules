@@ -6,13 +6,13 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:22:59 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 20:11:40 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:24:23 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(void) {
+ScavTrap::ScavTrap(void) : ClapTrap() {
   std::cout << "Default Constructor \033[1m(from Scavtrap)\033[0m called!";
   std::cout << std::endl;
   _name = "ScavTrap";
@@ -21,16 +21,15 @@ ScavTrap::ScavTrap(void) {
   _attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(std::string newName) {
+ScavTrap::ScavTrap(std::string newName) : ClapTrap(newName) {
   std::cout << "Parameterized Constructor \033[1m(from Scavtrap)\033[0m";
   std::cout << " called!" << std::endl;
-  _name = newName;
   _hitPoints = 100;
   _energyPoints = 50;
   _attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& rhs) {
+ScavTrap::ScavTrap(const ScavTrap& rhs) : ClapTrap(rhs) {
   std::cout << "Copy Constructor \033[1m(from Scavtrap)\033[0m called!";
   std::cout << std::endl;
   *this = rhs;

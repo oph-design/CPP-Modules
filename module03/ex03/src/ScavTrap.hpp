@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 19:23:06 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 21:42:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:24:16 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include "ClapTrap.hpp"
 
-class ScavTrap : virtual public ClapTrap {
+class ScavTrap : public virtual ClapTrap {
  public:
     ScavTrap(void);
     ScavTrap(std::string newName);

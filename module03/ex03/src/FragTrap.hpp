@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/19 20:29:12 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/19 21:42:34 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:01:04 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : virtual public ClapTrap{
+class FragTrap : public virtual ClapTrap{
  public:
     FragTrap(void);
     FragTrap(std::string newName);
