@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:01 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 13:18:56 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/21 16:33:31 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Dog::~Dog(void) {
 }
 
 Dog&  Dog::operator=(const Dog& rhs) {
+  delete this->_brain;
   this->_brain = new Brain(*(rhs._brain));
   this->_type = rhs.getType();
   return (*this);

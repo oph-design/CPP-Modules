@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:11 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 13:19:06 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/21 16:32:07 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ Cat::~Cat(void) {
 }
 
 Cat&  Cat::operator=(const Cat& rhs) {
+  delete this->_brain;
   this->_brain = new Brain(*(rhs._brain));
   this->_type = rhs.getType();
   return (*this);
