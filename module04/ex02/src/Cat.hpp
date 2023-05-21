@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 09:53:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 14:10:35 by oheinzel         ###   ########.fr       */
+/*   Created: 2023/05/21 10:02:02 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/21 11:40:45 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_H
-# define ANIMAL_H
+#ifndef CAT_H
+# define CAT_H
 
 # include <iostream>
 # include <string>
 
-class Animal {
- protected:
-    std::string _type;
+# include "Animal.hpp"
+# include "Brain.hpp"
+
+class Cat : public Animal{
+ private:
+    Brain *_brain;
 
  public:
-    Animal(void);
-    Animal(const Animal &rhs);
-    Animal(std::string newType);
-    virtual ~Animal(void);
-    Animal& operator=(const Animal &rhs);
-    std::string getType(void) const;
-    void setType(std::string newType);
-    virtual void makeSound(void) const;
+    Cat(void);
+    Cat(const Cat &rhs);
+    ~Cat(void);
+    Cat& operator=(const Cat &rhs);
+    void makeSound(void) const;
 };
 
-std::ostream& operator<<(std::ostream& out, const Animal& rhs);
+std::ostream& operator<<(std::ostream& out, const Cat& rhs);
 
 #endif

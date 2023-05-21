@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 09:53:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 14:10:35 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/21 14:12:18 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@
 class Animal {
  protected:
     std::string _type;
-
- public:
     Animal(void);
     Animal(const Animal &rhs);
     Animal(std::string newType);
     virtual ~Animal(void);
+
+ public:
     Animal& operator=(const Animal &rhs);
     std::string getType(void) const;
     void setType(std::string newType);

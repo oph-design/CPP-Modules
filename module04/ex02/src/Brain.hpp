@@ -1,36 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/21 09:53:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 14:10:35 by oheinzel         ###   ########.fr       */
+/*   Created: 2023/05/21 11:25:59 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/21 11:30:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_H
-# define ANIMAL_H
+#ifndef BRAIN_H
+# define BRAIN_H
 
 # include <iostream>
 # include <string>
 
-class Animal {
- protected:
-    std::string _type;
+class Brain {
+ private:
+    std::string _ideas[100];
 
  public:
-    Animal(void);
-    Animal(const Animal &rhs);
-    Animal(std::string newType);
-    virtual ~Animal(void);
-    Animal& operator=(const Animal &rhs);
-    std::string getType(void) const;
-    void setType(std::string newType);
-    virtual void makeSound(void) const;
+    Brain(void);
+    Brain(const Brain &rhs);
+    Brain(std::string newIdeas);
+    ~Brain(void);
+    Brain& operator=(const Brain &rhs);
+    std::string getIdeaByIndex(unsigned int index) const;
+    void setIdeaByIndex(std::string newIdea, unsigned int index);
 };
 
-std::ostream& operator<<(std::ostream& out, const Animal& rhs);
+std::ostream& operator<<(std::ostream& out, const Brain& rhs);
 
 #endif
