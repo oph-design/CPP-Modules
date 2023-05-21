@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/21 13:08:11 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/21 13:19:06 by oheinzel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Cat.hpp"
 
 Cat::Cat(void)
@@ -6,23 +18,23 @@ Cat::Cat(void)
   std::cout << "\033[1;33mCat born\033[0m" << std::endl;
 }
 
-Cat::Cat(const Cat& rhs) {
+Cat::Cat(const Cat& rhs) : Animal (rhs) {
   *this = rhs;
   std::cout << "\033[1;33mCat cloned\033[0m" << std::endl;
 }
 
 Cat::~Cat(void) {
+  delete _brain;
   std::cout << "\033[1;33mCat died\033[0m" << std::endl;
 }
 
 Cat&  Cat::operator=(const Cat& rhs) {
-  this->_brain = new Brain(rhs._brain);
+  this->_brain = new Brain(*(rhs._brain));
   this->_type = rhs.getType();
   return (*this);
 }
 
 void Cat::makeSound(void) const {
-  delete _brain;
   std::cout << "meow meow" << std::endl;
 }
 

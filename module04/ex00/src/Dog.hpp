@@ -4,7 +4,7 @@
 # include <iostream>
 # include <string>
 
-#include "Animal.hpp"
+# include "Animal.hpp"
 
 class Dog : public Animal {
  public:

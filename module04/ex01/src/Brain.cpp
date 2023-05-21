@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 11:29:31 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 11:37:55 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/21 13:13:32 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ std::ostream& operator<<(std::ostream& out, const Brain& rhs) {
   out << "---------------\n";
   while (i < 100)
   {
-    out << "Idea " << i + 1  << ": " << rhs.getIdeaByIndex(i++) << "\n";
+    out << "Idea " << i + 1  << ": " << rhs.getIdeaByIndex(i) << "\n";
     i++;
   }
   out << "---------------" << std::endl;
