@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 09:51:42 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 10:18:55 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/21 11:02:54 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ void Animal::setType(std::string newType) {
   _type = newType;
 }
 
-void Animal::makeSound(void) {
-  std::cout << "Animal is human made concept theres no sound to be made"
-  std::cout << std::endl;
+void Animal::makeSound(void) const {
+  std::cout << "blanc blanc" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Animal& rhs) {

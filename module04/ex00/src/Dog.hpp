@@ -12,7 +12,7 @@ class Dog : public Animal {
     Dog(const Dog &rhs);
     ~Dog(void);
     Dog& operator=(const Dog &rhs);
-    void makeSound(void);
+    void makeSound(void) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Dog& rhs);

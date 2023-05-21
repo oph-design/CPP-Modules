@@ -15,10 +15,11 @@ Cat::~Cat(void) {
 }
 
 Cat&  Cat::operator=(const Cat& rhs) {
+  this->_type = rhs.getType();
   return (*this);
 }
 
-void Cat::makeSound(void) {
+void Cat::makeSound(void) const {
   std::cout << "meow meow" << std::endl;
 }
 

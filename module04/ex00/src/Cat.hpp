@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 10:02:02 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 10:20:37 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/21 10:36:56 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Cat : public Animal{
     Cat(const Cat &rhs);
     ~Cat(void);
     Cat& operator=(const Cat &rhs);
-    void makeSound(void);
+    void makeSound(void) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const Cat& rhs);
