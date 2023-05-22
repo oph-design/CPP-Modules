@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 19:55:06 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 21:43:11 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:55:23 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <string>
 
 # include "AMateria.hpp"
+
+class AMateria;
 
 class ICharacter
 {

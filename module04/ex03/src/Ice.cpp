@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 20:41:23 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 20:45:36 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:04:00 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ Ice::~Ice(void) {
 }
 
 Ice&  Ice::operator=(const Ice& rhs) {
+  (void)rhs;
   return (*this);
 }
 
@@ -31,5 +32,6 @@ AMateria* Ice::clone(void) const {
 }
 
 void Ice::use(ICharacter& target) {
- std::cout << "* shoots an Icebold at" << target.getName() << " *" << std::endl;
+ std::cout << "* shoots an Icebold at " << target.getName();
+ std::cout << " *" << std::endl;
 }

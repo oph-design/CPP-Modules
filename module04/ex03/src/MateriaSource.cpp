@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:45:31 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 21:56:09 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:12:50 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ MateriaSource&  MateriaSource::operator=(const MateriaSource& rhs) {
 
   while (i < 4)
   {
-    delete this->_inventar[i];
-    this->_inventar[i] = NULL;
-    if (rhs._inventar[i] != NULL)
-      this->_inventar[i] = rhs._inventar[i]->clone();
+    delete this->_templates[i];
+    this->_templates[i] = NULL;
+    if (rhs._templates[i] != NULL)
+      this->_templates[i] = rhs._templates[i]->clone();
     i++;
   }
   return (*this);
@@ -43,17 +43,17 @@ MateriaSource&  MateriaSource::operator=(const MateriaSource& rhs) {
 void MateriaSource::learnMateria(AMateria* m) {
   unsigned int i = 0;
 
-  while (_inventar[i] && i < 4)
+  while (_templates[i] && i < 4)
     i++;
   if (i > 3)
     return ;
-  _inventar[i] = m;
+  _templates[i] = m->clone();
 }
 
-AMateria* createMateria(std::string const & type) {
+AMateria* MateriaSource::createMateria(std::string const & type) {
   unsigned int i = 0;
 
-  while (_templates[i].getType().compare(type) && i < 4)
+  while (i < 4 && _templates[i] && _templates[i]->getType().compare(type))
     i++;
   if (i < 4)
     return (_templates[i]->clone());

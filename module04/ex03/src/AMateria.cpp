@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 20:13:09 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 20:54:58 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:57:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ AMateria::AMateria(const AMateria & rhs) {
 }
 
 AMateria& AMateria::operator=(const AMateria & rhs) {
+  this->_type = rhs._type;
   return (*this);
 }
 

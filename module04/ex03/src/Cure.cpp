@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 20:44:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 20:51:54 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:02:55 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ Cure::~Cure(void) {
 }
 
 Cure&  Cure::operator=(const Cure& rhs) {
+  (void)rhs;
   return (*this);
 }
 
@@ -31,6 +32,6 @@ AMateria* Cure::clone(void) const {
 }
 
 void Cure::use(ICharacter& target) {
- std::cout << "* heals" << target.getName() << "'s wounds *" << std::endl;
+ std::cout << "* heals " << target.getName() << "'s wounds *" << std::endl;
 }
 
