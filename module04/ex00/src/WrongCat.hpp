@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 16:32:20 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 16:32:26 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:07:26 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 # include <iostream>
 # include <string>
 
-# include "Animal.hpp"
+# include "WrongAnimal.hpp"
 
-class WrongCat : public Animal{
+class WrongCat : public WrongAnimal {
  public:
     WrongCat(void);
     WrongCat(const WrongCat &rhs);

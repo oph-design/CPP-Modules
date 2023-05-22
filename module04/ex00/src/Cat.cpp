@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:22 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 15:20:22 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:05:42 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Cat::Cat(void)
   std::cout << "\033[1;33mCat born\033[0m" << std::endl;
 }
 
-Cat::Cat(const Cat& rhs) {
+Cat::Cat(const Cat& rhs) : Animal(rhs) {
   *this = rhs;
   std::cout << "\033[1;33mCat cloned\033[0m" << std::endl;
 }
@@ -27,7 +27,6 @@ Cat::~Cat(void) {
 }
 
 Cat&  Cat::operator=(const Cat& rhs) {
-  delete this->_brain;
   this->_type = rhs.getType();
   return (*this);
 }

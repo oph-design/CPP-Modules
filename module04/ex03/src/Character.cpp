@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:19:07 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 16:36:45 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 21:26:45 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,18 @@ void Character::equip(AMateria* m) {
     i++;
   if (i > 3)
     return;
-  _inventar[i] = m->clone();
+  _inventar[i] = m;
 }
 
 void Character::unequip(int idx) {
   if (idx < 0 || idx > 3)
     return;
+  delete _inventar[idx];
   _inventar[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) {
-  if (idx < 0 || idx > 3)
+  if (idx < 0 || idx > 3 || !_inventar[idx])
     return;
   _inventar[idx]->use(target);
 }

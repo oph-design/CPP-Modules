@@ -6,13 +6,13 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/21 10:21:53 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/22 19:55:18 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	test
 SRCS_DIR	=	src/
-SRC_FILES	=	main Animal Dog Cat
+SRC_FILES	=	main Animal Dog Cat WrongAnimal WrongCat
 OBJS_DIR	=	obj/
 COMP			=	c++
 CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98

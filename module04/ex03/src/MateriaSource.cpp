@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:45:31 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 16:37:51 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 21:29:43 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@ MateriaSource::MateriaSource(const MateriaSource& rhs) {
 }
 
 MateriaSource::~MateriaSource(void) {
+  delete _templates[0];
+  delete _templates[1];
+  delete _templates[2];
+  delete _templates[3];
 }
 
 MateriaSource&  MateriaSource::operator=(const MateriaSource& rhs) {
@@ -46,7 +50,7 @@ void MateriaSource::learnMateria(AMateria* m) {
     i++;
   if (i > 3)
     return;
-  _templates[i] = m->clone();
+  _templates[i] = m;
 }
 
 AMateria* MateriaSource::createMateria(std::string const & type) {

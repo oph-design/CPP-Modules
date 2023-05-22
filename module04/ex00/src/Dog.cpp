@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:28 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 13:08:30 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:05:14 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Dog::Dog(void)
   std::cout << "\033[1;33mDog born\033[0m" << std::endl;
 }
 
-Dog::Dog(const Dog& rhs) {
+Dog::Dog(const Dog& rhs) : Animal(rhs) {
   *this = rhs;
   std::cout << "\033[1;33mDog cloned\033[0m" << std::endl;
 }

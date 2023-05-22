@@ -6,14 +6,13 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:01 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 15:20:08 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:13:06 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
 
-Dog::Dog(void)
-  : Animal("Dog") {
+Dog::Dog(void) : Animal("Dog") {
   _brain = new Brain();
   std::cout << "\033[1;33mDog born\033[0m" << std::endl;
 }
@@ -37,6 +36,10 @@ Dog&  Dog::operator=(const Dog& rhs) {
 
 void Dog::makeSound(void) const {
   std::cout << "bark bark" << std::endl;
+}
+
+Brain* Dog::getBrain(void) const {
+  return (_brain);
 }
 
 std::ostream& operator<<(std::ostream& out, const Dog& rhs) {
