@@ -6,19 +6,18 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:11 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 16:32:07 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:35:19 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat(void)
-  :  Animal("Cat") {
+Cat::Cat(void) :  Animal("Cat") {
   _brain = new Brain();
   std::cout << "\033[1;33mCat born\033[0m" << std::endl;
 }
 
-Cat::Cat(const Cat& rhs) : Animal (rhs) {
+Cat::Cat(const Cat& rhs) : Animal(rhs) {
   *this = rhs;
   std::cout << "\033[1;33mCat cloned\033[0m" << std::endl;
 }

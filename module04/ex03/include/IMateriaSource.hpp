@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 19:55:13 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 21:43:49 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:40:24 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@
 
 # include "AMateria.hpp"
 
-class IMateriaSource
-{
+class IMateriaSource {
  public:
     virtual ~IMateriaSource() {}
     virtual void learnMateria(AMateria*) = 0;

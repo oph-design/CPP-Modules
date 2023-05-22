@@ -6,13 +6,13 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 11:29:31 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 13:13:32 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:34:57 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
 
-Brain::Brain(void){
+Brain::Brain(void) {
 }
 
 Brain::Brain(const Brain& rhs) {
@@ -25,8 +25,7 @@ Brain::~Brain(void) {
 Brain&  Brain::operator=(const Brain& rhs) {
   unsigned int i = 0;
 
-  while (i < 100)
-  {
+  while (i < 100) {
     this->_ideas[i] = rhs.getIdeaByIndex(i);
     i++;
   }
@@ -45,8 +44,7 @@ std::ostream& operator<<(std::ostream& out, const Brain& rhs) {
   unsigned int i = 0;
 
   out << "---------------\n";
-  while (i < 100)
-  {
+  while (i < 100) {
     out << "Idea " << i + 1  << ": " << rhs.getIdeaByIndex(i) << "\n";
     i++;
   }

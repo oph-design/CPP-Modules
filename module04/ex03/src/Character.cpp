@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:19:07 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 21:50:35 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:36:45 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,7 @@ Character::~Character(void) {
 Character&  Character::operator=(const Character& rhs) {
   unsigned int i = 0;
 
-  while (i < 4)
-  {
+  while (i < 4) {
     delete this->_inventar[i];
     this->_inventar[i] = NULL;
     if (rhs._inventar[i] != NULL)
@@ -62,18 +61,18 @@ void Character::equip(AMateria* m) {
   while (_inventar[i] && i < 4)
     i++;
   if (i > 3)
-    return ;
-  _inventar[i] = m;
+    return;
+  _inventar[i] = m->clone();
 }
 
 void Character::unequip(int idx) {
   if (idx < 0 || idx > 3)
-    return ;
+    return;
   _inventar[idx] = NULL;
 }
 
 void Character::use(int idx, ICharacter& target) {
   if (idx < 0 || idx > 3)
-    return ;
+    return;
   _inventar[idx]->use(target);
 }

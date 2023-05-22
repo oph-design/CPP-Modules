@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 19:55:06 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 13:55:23 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:39:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@
 
 class AMateria;
 
-class ICharacter
-{
+class ICharacter {
  public:
     virtual ~ICharacter() {}
     virtual std::string const & getName() const = 0;

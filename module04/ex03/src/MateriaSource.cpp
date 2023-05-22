@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:45:31 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 14:12:50 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:37:51 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ MateriaSource::~MateriaSource(void) {
 MateriaSource&  MateriaSource::operator=(const MateriaSource& rhs) {
   unsigned int i = 0;
 
-  while (i < 4)
-  {
+  while (i < 4) {
     delete this->_templates[i];
     this->_templates[i] = NULL;
     if (rhs._templates[i] != NULL)
@@ -46,7 +45,7 @@ void MateriaSource::learnMateria(AMateria* m) {
   while (_templates[i] && i < 4)
     i++;
   if (i > 3)
-    return ;
+    return;
   _templates[i] = m->clone();
 }
 

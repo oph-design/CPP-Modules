@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 10:31:56 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 11:01:49 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:32:45 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(void) {
 
   std::cout << j->getType() << " " << std::endl;
   std::cout << i->getType() << " " << std::endl;
-  i->makeSound(); //will output the cat sound!
+  i->makeSound();
   j->makeSound();
   meta->makeSound();
   delete meta;

@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 10:31:56 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 13:13:15 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:34:13 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void) {
   const Animal* j = new Dog();
   const Animal* i = new Cat();
 
-  delete j;//should not create a leak
+  delete j;
   delete i;
   return (0);
 }
