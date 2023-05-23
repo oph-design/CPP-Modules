@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 13:08:01 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 20:13:06 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/23 11:10:10 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ Dog::Dog(void) : Animal("Dog") {
   std::cout << "\033[1;33mDog born\033[0m" << std::endl;
 }
 
-Dog::Dog(const Dog& rhs) : Animal(rhs) {
-  *this = rhs;
-  std::cout << "\033[1;33mDog cloned\033[0m" << std::endl;
-}
-
 Dog::~Dog(void) {
   delete _brain;
   std::cout << "\033[1;33mDog died\033[0m" << std::endl;
 }
 
+Dog::Dog(const Dog& rhs) : Animal(rhs) {
+  _brain = new Brain(*(rhs._brain));
+  _type = rhs._type;
+  std::cout << "\033[1;33mDog cloned\033[0m" << std::endl;
+}
+
 Dog&  Dog::operator=(const Dog& rhs) {
-  delete this->_brain;
-  this->_brain = new Brain(*(rhs._brain));
+  *_brain = *(rhs._brain);
   this->_type = rhs.getType();
   return (*this);
 }
