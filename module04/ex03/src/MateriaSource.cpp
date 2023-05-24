@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:45:31 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 21:29:43 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:03:12 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ MateriaSource::MateriaSource(void) {
 }
 
 MateriaSource::MateriaSource(const MateriaSource& rhs) {
-  *this = rhs;
+  unsigned int i = 0;
+
+  while (i < 4) {
+    this->_templates[i] = NULL;
+    if (rhs._templates[i] != NULL)
+      this->_templates[i] = rhs._templates[i]->clone();
+    i++;
+  }
 }
 
 MateriaSource::~MateriaSource(void) {

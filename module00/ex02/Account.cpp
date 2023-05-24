@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/12 09:40:06 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/12 15:06:02 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/24 09:52:00 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,23 +66,10 @@ void	Account::_displayTimestamp( void )
 {
 	const std::time_t now = time(0);
 	struct tm *time = std::localtime(&now);
+  char str[18];
 
-	std::cout << "[" << (time->tm_year + 1900);
-	if (time->tm_mon + 1 < 10)
-		std::cout << "0";
-	std::cout << (time->tm_mon + 1);
-	if (time->tm_mday < 10)
-		std::cout << "0";
-	std::cout << time->tm_mday;
-	if (time->tm_hour < 10)
-		std::cout << "0";
-	std::cout << "_" << time->tm_hour;
-	if (time->tm_min < 10)
-		std::cout << "0";
-	std::cout << time->tm_min;
-	if (time->tm_sec < 10)
-		std::cout << "0";
-	std::cout << time->tm_sec << "] ";
+  std::strftime(str, 18, "[%Y%m%d_%H%M%S] ");
+  std::cout << str;
 }
 
 void	Account::displayAccountsInfos( void )

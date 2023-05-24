@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:19:07 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 21:26:45 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:05:57 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,15 @@ Character::Character(void) : _name("Char") {
 }
 
 Character::Character(const Character& rhs) {
-  *this = rhs;
+  unsigned int i = 0;
+
+  while (i < 4) {
+    this->_inventar[i] = NULL;
+    if (rhs._inventar[i] != NULL)
+      this->_inventar[i] = rhs._inventar[i]->clone();
+    i++;
+  }
+  this->_name = rhs.getName();
 }
 
 Character::Character(std::string newName) :_name(newName) {

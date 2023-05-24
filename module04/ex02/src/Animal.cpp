@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 09:51:42 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/21 11:02:54 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:24:22 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,6 @@ std::string Animal::getType(void) const {
 
 void Animal::setType(std::string newType) {
   _type = newType;
-}
-
-void Animal::makeSound(void) const {
-  std::cout << "blanc blanc" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const Animal& rhs) {

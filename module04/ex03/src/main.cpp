@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/21 21:56:41 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/22 21:39:12 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/24 10:45:27 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,10 @@ int main(void) {
   clone.use(0, *bob);
   mitch.unequip(0);
   clone.use(0, *bob);
+  mitch = clone;
   delete bob;
   delete me;
   delete src;
   return 0;
 }
+
