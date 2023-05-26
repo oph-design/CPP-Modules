@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 15:55:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 15:55:40 by oheinzel         ###   ########.fr       */
+/*   Created: 2023/05/26 16:31:15 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/26 17:54:50 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class PresidentialPardonForm : public AForm{
     PresidentialPardonForm& operator=(const PresidentialPardonForm &rhs);
     std::string getTarget(void) const;
     void setTarget(std::string newTarget);
+    void execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const PresidentialPardonForm& rhs);

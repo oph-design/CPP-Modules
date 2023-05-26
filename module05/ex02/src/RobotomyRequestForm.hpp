@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:08:44 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 16:09:03 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:55:13 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ class RobotomyRequestForm : public AForm {
     RobotomyRequestForm& operator=(const RobotomyRequestForm &rhs);
     std::string getTarget(void) const;
     void setTarget(std::string newTarget);
+    void execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream& out, const RobotomyRequestForm& rhs);

@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:07:51 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 14:30:46 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:54:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ class Bureaucrat {
     void incrementGrade(void);
     void decrementGrade(void);
     void signForm(AForm& form);
+    void executeForm(AForm const & form);
 
     class GradeTooHighException : public std::exception {
      public:

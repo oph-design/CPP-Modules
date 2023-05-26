@@ -6,21 +6,20 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:07:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 16:08:04 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/26 17:55:20 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
 RobotomyRequestForm::RobotomyRequestForm(void)
-: AForm("RobotomyRequestForm", 25, 5), _target("Nala") {}
+: AForm("RobotomyRequestForm", 72, 45), _target("Nala") {}
 
 RobotomyRequestForm::RobotomyRequestForm
 (const RobotomyRequestForm& rhs) : AForm(rhs), _target(rhs._target) {}
 
 RobotomyRequestForm::RobotomyRequestForm(std::string newTarget)
- : AForm("RobotomyRequestForm", 25, 5), _target(newTarget) {
-}
+ : AForm("RobotomyRequestForm", 72, 45), _target(newTarget) {}
 
 RobotomyRequestForm::~RobotomyRequestForm(void) {}
 
@@ -37,6 +36,17 @@ std::string RobotomyRequestForm::getTarget(void) const {
 
 void RobotomyRequestForm::setTarget(std::string newTarget) {
   _target = newTarget;
+}
+
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
+  unsigned int prob = rand() % 2;
+
+  if (executor.getGrade() > _execGrade)
+    throw GradeTooLowException();
+  std::cout << "Brrr Brrr" << std::endl;
+  if (!prob)
+    return ((void)(std::cout << "Robotomy was unsuccessful" << std::endl));
+  std::cout << "Successfully robotomized" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out,
