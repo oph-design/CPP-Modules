@@ -6,11 +6,12 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:58:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 08:16:14 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/26 11:08:38 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int main(void) {
   try {

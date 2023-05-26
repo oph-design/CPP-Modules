@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:07:47 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 08:19:29 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/26 10:57:55 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,22 @@ void Bureaucrat::decrementGrade(void) {
   _grade++;
 }
 
+void Bureaucrat::signForm(Form& form) {
+  if (_grade > form.getSignGrade()) {
+    std::cout << _name << "couldn't signed " << form.getName();
+    std::cout << "because their Grade is too low" << std::endl;
+    return ;
+  }
+  std::cout << _name << " signed " << form.getName() << std::endl;
+  form.setIsSigned(true);
+}
+
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-  return ("Exception: Grade can't be higher than 1");
+  return ("Bureaucrat: Grade can't be higher than 1");
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-  return ("Exception: Grade can't be lower than 150");
+  return ("Bureaucrat: Grade can't be lower than 150");
 }
 
 std::ostream& operator<<(std::ostream& out, const Bureaucrat& rhs) {
