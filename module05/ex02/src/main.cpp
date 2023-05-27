@@ -6,31 +6,71 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:58:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 14:55:00 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 17:40:33 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void) {
   try {
-    Bureaucrat bob("Bob", 1);
-    std::cout << bob;
-    Bureaucrat bob2(bob);
-    std::cout << bob2;
-    Bureaucrat tyler("Tyler", 150);
-    std::cout << tyler;
-    tyler = bob;
-    bob.incrementGrade();
-    std::cout << tyler;
-  } catch (Bureaucrat::GradeTooHighException& e) {
-    std::cout << e.what() << std::endl;
+    PresidentialPardonForm pres("Kanye West");
+    Bureaucrat joe("Joe Biden", 1);
+    Bureaucrat junior("Junior", 150);
+    std::cout << pres;
+    pres.beSigned(joe);
+    pres.execute(joe);
+    pres.execute(junior);
+  } catch(AForm::GradeTooLowException& e) {
+    std::cout << "AForm: Bureaucrat Grade too low" << std::endl;
   }
   try {
-    Bureaucrat test("Test", 151);
-  } catch (Bureaucrat::GradeTooLowException& e) {
-    std::cout << e.what() << std::endl;
+    RobotomyRequestForm rob("Rob");
+    Bureaucrat joe("Joe Biden", 1);
+    Bureaucrat junior("Junior", 150);
+    std::cout << rob;
+    rob.beSigned(joe);
+    rob.execute(joe);
+    rob.execute(junior);
+  } catch(AForm::GradeTooLowException& e) {
+    std::cout << "AForm: Bureaucrat Grade too low" << std::endl;
+  }
+  try {
+    ShrubberyCreationForm shrub("Shrub");
+    Bureaucrat joe("Joe Biden", 1);
+    Bureaucrat junior("Junior", 150);
+    std::cout << shrub;
+    shrub.beSigned(joe);
+    shrub.execute(joe);
+    shrub.execute(junior);
+  } catch(AForm::GradeTooLowException& e) {
+    std::cout << "AForm: Bureaucrat Grade too low" << std::endl;
+  }
+  try {
+    ShrubberyCreationForm shrub("Shubby");
+    RobotomyRequestForm rob("Robby");
+    PresidentialPardonForm pres("Donald");
+    Bureaucrat junior("Junior", 150);
+    Bureaucrat joe("Joe Biden", 1);
+    junior.executeForm(shrub);
+    junior.executeForm(rob);
+    junior.executeForm(pres);
+    shrub.beSigned(joe);
+    pres.beSigned(joe);
+    rob.beSigned(joe);
+    std::cout << shrub;
+    junior.executeForm(shrub);
+    junior.executeForm(rob);
+    junior.executeForm(pres);
+    joe.executeForm(shrub);
+    joe.executeForm(rob);
+    joe.executeForm(pres);
+  } catch(AForm::GradeTooLowException& e) {
+    std::cout << "AForm: Bureaucrat Grade too low" << std::endl;
   }
   return (0);
 }

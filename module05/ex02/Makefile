@@ -6,13 +6,14 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/05/26 11:14:09 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/05/27 16:37:05 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	test
 SRCS_DIR	=	src/
-SRC_FILES	=	main Bureaucrat Form
+SRC_FILES	=	main Bureaucrat AForm PresidentialPardonForm RobotomyRequestForm \
+						ShrubberyCreationForm
 OBJS_DIR	=	obj/
 COMP			=	c++
 CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98

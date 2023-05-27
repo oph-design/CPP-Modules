@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:07:51 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 17:54:30 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 16:37:35 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 # include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat {
  private:
