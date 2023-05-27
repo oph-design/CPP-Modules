@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:58:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 11:08:38 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 14:55:00 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int main(void) {
     tyler = bob;
     bob.incrementGrade();
     std::cout << tyler;
-  } catch (Bureaucrat::GradeTooHighException e) {
+  } catch (Bureaucrat::GradeTooHighException& e) {
     std::cout << e.what() << std::endl;
   }
   try {
     Bureaucrat test("Test", 151);
-  } catch (Bureaucrat::GradeTooLowException e) {
+  } catch (Bureaucrat::GradeTooLowException& e) {
     std::cout << e.what() << std::endl;
   }
   return (0);

@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:07:47 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 10:57:55 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 15:26:50 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void Bureaucrat::decrementGrade(void) {
 
 void Bureaucrat::signForm(Form& form) {
   if (_grade > form.getSignGrade()) {
-    std::cout << _name << "couldn't signed " << form.getName();
-    std::cout << "because their Grade is too low" << std::endl;
+    std::cout << _name << " couldn't signed " << form.getName();
+    std::cout << " because their Grade is too low" << std::endl;
     return ;
   }
   std::cout << _name << " signed " << form.getName() << std::endl;
