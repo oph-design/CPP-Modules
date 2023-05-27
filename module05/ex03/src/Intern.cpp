@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 18:52:48 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 14:37:56 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:05:53 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,13 @@ Intern::Intern(const Intern& rhs) {
 Intern::~Intern(void) {}
 
 Intern&  Intern::operator=(const Intern& rhs) {
+  (void)rhs;
   return (*this);
 }
 
-AForm* makeForm(std::string name, std::string target) {
+AForm* Intern::makeForm(std::string name, std::string target) {
   unsigned int i = 0;
-  AForm *res = nullptr;
+  AForm *res = NULL;
   std::string type[3] = {"robotomy request", "presidential pardon",
                         "shrubbery creation"};
 

@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:07:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 17:31:03 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:04:00 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,11 @@ void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
     throw GradeTooLowException();
   std::cout << "Brrr Brrr" << std::endl;
   if (!(std::rand() % 2))
-    return ((void)(std::cout << "Robotomy was unsuccessful" << std::endl));
-  std::cout << "Successfully robotomized" << std::endl;
+  {
+    std::cout << _target << "'s Robotomy was unsuccessful" << std::endl;
+    return ;
+  }
+  std::cout << "Successfully robotomized " << _target << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out,

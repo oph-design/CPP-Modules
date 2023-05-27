@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:53:08 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 17:55:05 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 17:30:41 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ void PresidentialPardonForm::setTarget(std::string newTarget) {
 }
 
 void PresidentialPardonForm::execute(Bureaucrat const & executor) const {
+  if (!_isSigned)
+    return ;
   if (executor.getGrade() > _execGrade)
     throw GradeTooLowException();
   std::cout << _target << " has been pardoned by Zaphod Beeblebrox\n";

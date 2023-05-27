@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:07:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 17:55:20 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:00:51 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,19 @@ void RobotomyRequestForm::setTarget(std::string newTarget) {
 }
 
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
-  unsigned int prob = rand() % 2;
+  std::srand(std::time(NULL));
 
+  if (!_isSigned)
+    return ;
   if (executor.getGrade() > _execGrade)
     throw GradeTooLowException();
   std::cout << "Brrr Brrr" << std::endl;
-  if (!prob)
-    return ((void)(std::cout << "Robotomy was unsuccessful" << std::endl));
-  std::cout << "Successfully robotomized" << std::endl;
+  if (!(std::rand() % 2))
+  {
+    std::cout << _target << "'s Robotomy was unsuccessful" << std::endl;
+    return ;
+  }
+  std::cout << "Successfully robotomized " << _target << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out,
