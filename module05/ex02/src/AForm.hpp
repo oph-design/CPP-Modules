@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 10:23:36 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/26 17:54:43 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:15:12 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 class Bureaucrat;
 
 class AForm {
- protected:
+ private:
     const std::string _name;
     bool _isSigned;
     const int _signGrade;

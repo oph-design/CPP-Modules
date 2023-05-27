@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:58:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 17:40:33 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:20:44 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int main(void) {
     shrub.beSigned(joe);
     pres.beSigned(joe);
     rob.beSigned(joe);
-    std::cout << shrub;
     junior.executeForm(shrub);
     junior.executeForm(rob);
     junior.executeForm(pres);

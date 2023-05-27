@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:07:03 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 18:04:00 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:19:35 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ RobotomyRequestForm::~RobotomyRequestForm(void) {}
 RobotomyRequestForm&  RobotomyRequestForm::operator=
 (const RobotomyRequestForm& rhs) {
   this->_target = rhs.getTarget();
-  this->_isSigned = rhs.getIsSigned();
+  this->setIsSigned(rhs.getIsSigned());
   return (*this);
 }
 
@@ -41,9 +41,9 @@ void RobotomyRequestForm::setTarget(std::string newTarget) {
 void RobotomyRequestForm::execute(Bureaucrat const & executor) const {
   std::srand(std::time(NULL));
 
-  if (!_isSigned)
+  if (!this->getIsSigned())
     return ;
-  if (executor.getGrade() > _execGrade)
+  if (executor.getGrade() > this->getExecGrade())
     throw GradeTooLowException();
   std::cout << "Brrr Brrr" << std::endl;
   if (!(std::rand() % 2))

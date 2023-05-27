@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 16:09:41 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 17:30:25 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:19:40 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {}
 ShrubberyCreationForm&  ShrubberyCreationForm::operator=
 (const ShrubberyCreationForm& rhs) {
   this->_target = rhs.getTarget();
-  this->_isSigned = rhs.getIsSigned();
+  this->setIsSigned(rhs.getIsSigned());
   return (*this);
 }
 
@@ -42,9 +42,9 @@ void ShrubberyCreationForm::execute(Bureaucrat const & executor) const {
   std::string fname = _target + "_shrubbery";
 	std::ofstream	outfile;
 
-  if (!_isSigned)
+  if (!this->getIsSigned())
     return ;
-  if (executor.getGrade() > _execGrade)
+  if (executor.getGrade() > this->getExecGrade())
     throw GradeTooLowException();
   outfile.open(fname.c_str());
   if (!outfile.is_open())

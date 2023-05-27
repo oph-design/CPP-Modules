@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 17:07:47 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/27 15:26:16 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/27 18:24:03 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,12 @@ void Bureaucrat::signForm(AForm& form) {
 }
 
 void Bureaucrat::executeForm(AForm const & form) {
+  if (!form.getIsSigned())
+  {
+    std::cout << _name << " couldn't execute " << form.getName();
+    std::cout << " because the form is unsigned" << std::endl;
+    return ;
+  }
   if (_grade > form.getExecGrade()){
     std::cout << _name << " couldn't execute " << form.getName();
     std::cout << " because their Grade is too low" << std::endl;
