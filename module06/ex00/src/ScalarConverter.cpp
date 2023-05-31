@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 13:16:52 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:59:39 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,8 +174,7 @@ void ScalarConverter::convert(std::string str) {
     str = str.substr(0, str.find("f"));
     isFloat = 1;
   }
-  switch (getType(str))
-  {
+  switch (getType(str)) {
     case 1:
       convChar(str); break;
     case 2:

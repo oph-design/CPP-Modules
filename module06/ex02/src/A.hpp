@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Serializer.hpp                                     :+:      :+:    :+:   */
+/*   A.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/31 14:54:15 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 16:39:42 by oheinzel         ###   ########.fr       */
+/*   Created: 2023/05/31 16:40:28 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/05/31 16:50:25 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERIALIZER_H
-# define SERIALIZER_H
+#ifndef A_H
+# define A_H
 
-# include <iomanip>
-# include <string>
-# include "Data.hpp"
+# include "Base.hpp"
 
-class Serializer {
- private:
-    Serializer(void);
-    Serializer(const Serializer& rhs);
-    Serializer& operator=(const Serializer& rhs);
-    ~Serializer(void);
-
+class A : public Base {
  public:
-    static uintptr_t serialize(Data *ptr);
-    static Data* deserialize(uintptr_t raw);
+  A();
 };
 
 #endif
