@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:00:13 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 10:00:57 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:56:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ class ScalarConverter {
   static void convInt(std::string str);
   static void convDouble(std::string str, int isFloat);
   static bool handlePseudos(std::string str);
-  static bool checkDoubleOverflow(std::string str);
+  static bool checkDoubleOverflow(std::string str, double check);
   static bool checkStr(std::string str);
   static int getType(std::string str);
 

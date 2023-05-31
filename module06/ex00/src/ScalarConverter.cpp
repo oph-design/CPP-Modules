@@ -6,24 +6,31 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 10:14:09 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:01:26 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
 
-bool ScalarConverter::checkDoubleOverflow(std::string str) {
-  std::string lim = std::to_string(DBL_MAX);
+bool ScalarConverter::checkDoubleOverflow(std::string str, double check) {
+  std::string lim = std::to_string(check);
 
-  if (str.find(".") > 308)
+  if (str.find(".") > 38)
     return (false);
-  if (str.find(".") < 308)
+  if (str.find(".") < 38)
     return (true);
-  for (size_t i = 0; i < 308; ++i) {
+  for (size_t i = 0; i < 38; ++i) {
     if (str.at(i) > lim.at(i))
       return (false);
     if (str.at(i) < lim.at(i))
       return (true);
+  }
+  if (str.find(".") == str.npos)
+    return (true);
+  str = str.substr(str.find(".") + 1, str.length());
+  for (size_t i = 0; i < str.length(); ++i){
+    if (str.at(i) != '0')
+      return (false);
   }
   return (true);
 }
@@ -31,11 +38,16 @@ bool ScalarConverter::checkDoubleOverflow(std::string str) {
 bool ScalarConverter::checkStr(std::string str) {
   bool hasPoint = false;
   size_t len = str.length();
+  double ovfCheck = DBL_MAX;
 
   if (len == 0)
     return (false);
   if (len == 1)
     return (true);
+  if (str.at(0) == '-') {
+    str = str.substr(1, len--);
+    ovfCheck = DBL_MIN;
+  }
   for (size_t i = 0; i < len; i++) {
     if (str.at(i) == '.' && !hasPoint) {
       hasPoint = true;
@@ -44,8 +56,8 @@ bool ScalarConverter::checkStr(std::string str) {
     if (!std::isdigit(str.at(i)))
       return (false);
   }
-  if (!checkDoubleOverflow(str))
-    return (false);
+  if (!checkDoubleOverflow(str, ovfCheck))
+    throw std::exception();
   return (true);
 }
 
