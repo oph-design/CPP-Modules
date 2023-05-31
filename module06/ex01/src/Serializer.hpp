@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 14:54:15 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 16:39:42 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 22:14:14 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <iomanip>
 # include <string>
+# include <stdint.h>
 # include "Data.hpp"
 
 class Serializer {

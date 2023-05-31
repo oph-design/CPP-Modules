@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:51:16 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 21:53:15 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 22:15:48 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ Base* generate(void) {
 }
 
 void identify(Base* p) {
-  if (dynamic_cast<A *>(p))
+  if (dynamic_cast<A*>(p))
     std::cout << "Class Type of Pointer is A" << std::endl;
-  if (dynamic_cast<B *>(p))
+  if (dynamic_cast<B*>(p))
     std::cout << "Class Type of Pointer is B" << std::endl;
-  if (dynamic_cast<C *>(p))
+  if (dynamic_cast<C*>(p))
     std::cout << "Class Type of Pointer is C" << std::endl;
 }
 
@@ -65,7 +65,7 @@ int main(void) {
     identify(test);
     identify(*test);
     delete test;
-  } catch (std::exception e) {
+  } catch (std::exception& e) {
     std::cerr << "random fail occurred" << std::endl;
   }
 }
