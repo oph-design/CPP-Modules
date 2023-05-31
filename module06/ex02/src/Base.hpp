@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:37:19 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 16:40:24 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:44:09 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 class Base {
  public:
-  virtual ~Base();
+  virtual ~Base() {}
 };
 
 #endif

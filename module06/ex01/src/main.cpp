@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:20:54 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 15:45:14 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:37:07 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ int main(void) {
   uintptr_t raw;
 
   list->insert("node beta");
-  test = Serializer::deserialize(6069);
-  std::cout << "test ptr:\t" << test << std::endl;
   std::cout << *list;
   std::cout << "original ptr:\t" << list << std::endl;
   raw = Serializer::serialize(list);
@@ -28,4 +26,5 @@ int main(void) {
   test = Serializer::deserialize(raw);
   std::cout << "test ptr:\t" << test << std::endl;
   std::cout << *test;
+  delete test;
 }
