@@ -6,29 +6,47 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 09:37:50 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 10:14:09 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
 
-int ScalarConverter::checkStr(std::string str) {
+bool ScalarConverter::checkDoubleOverflow(std::string str) {
+  std::string lim = std::to_string(DBL_MAX);
+
+  if (str.find(".") > 308)
+    return (false);
+  if (str.find(".") < 308)
+    return (true);
+  for (size_t i = 0; i < 308; ++i) {
+    if (str.at(i) > lim.at(i))
+      return (false);
+    if (str.at(i) < lim.at(i))
+      return (true);
+  }
+  return (true);
+}
+
+bool ScalarConverter::checkStr(std::string str) {
   bool hasPoint = false;
   size_t len = str.length();
 
-  if (len == 0 || len > 308)
-    return (0);
+  if (len == 0)
+    return (false);
   if (len == 1)
-    return (1);
+    return (true);
   for (size_t i = 0; i < len; i++) {
     if (str.at(i) == '.' && !hasPoint) {
       hasPoint = true;
       continue;
     }
     if (!std::isdigit(str.at(i)))
-      return (0);
+      return (false);
   }
-  return (1);
+  if (!checkDoubleOverflow(str))
+    return (false);
+  return (true);
 }
 
 int ScalarConverter::getType(std::string str) {
@@ -39,6 +57,26 @@ int ScalarConverter::getType(std::string str) {
   if (str.find(".") != str.npos)
     return (2);
   return (3);
+}
+
+bool ScalarConverter::handlePseudos(std::string str) {
+  std::stringstream ss;
+  double value;
+
+  if (str.compare("+inf") && str.compare("-inf")
+      && str.compare("+inff") && str.compare("-inff")
+      && str.compare("nan") && str.compare("nanf"))
+      return (false);
+  if (str.at(0) == 'n')
+    ss << str.substr(0, 3);
+  else
+    ss << str.substr(0, 4);
+  ss >> value;
+  std::cout << "char: impossible\n";
+  std::cout << "int: impossible\n";
+  std::cout << "float: " << static_cast<float>(value) << "f\n";
+  std::cout << "double: " << value << std::endl;
+  return (true);
 }
 
 void ScalarConverter::convChar(std::string str) {
@@ -114,6 +152,8 @@ void ScalarConverter::convDouble(std::string str, int isFloat) {
 void ScalarConverter::convert(std::string str) {
   int isFloat = 0;
 
+  if (handlePseudos(str))
+    return ;
   if (str.find("f") != str.npos) {
     str = str.substr(0, str.find("f"));
     isFloat = 1;
