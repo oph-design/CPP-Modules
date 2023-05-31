@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/30 19:18:12 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 09:37:50 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,65 +41,77 @@ int ScalarConverter::getType(std::string str) {
   return (3);
 }
 
-void ScalarConverter::convChar(std::string str, t_values& val) {
+void ScalarConverter::convChar(std::string str) {
   std::stringstream ss(str);
   std::stringstream sc(str);
   double check;
-
-  sc >> check;
-  if (check > INT_MAX || check< INT_MIN)
-    throw std::exception();
-  ss >> val.character;
-  val.integer = static_cast<int>(val.character);
-  val.fpoint = static_cast<float>(val.character);
-  val.dpoint = static_cast<double>(val.character);
-}
-
-void ScalarConverter::convInt(std::string str, t_values& val) {
-  std::stringstream ss(str);
-  std::stringstream sc(str);
-  double check;
+  char value;
 
   sc >> check;
   if (check > INT_MAX || check < INT_MIN)
     throw std::exception();
-  ss >> val.integer;
-  val.character = static_cast<char>(val.integer);
-  val.fpoint = static_cast<float>(val.integer);
-  val.dpoint = static_cast<double>(val.integer);
+  ss >> value;
+  std::cout << "char: ";
+  if (value < 32 || value > 126)
+    std::cout << "not displayable\n";
+  else
+    std::cout << static_cast<char>(value) << "\n";
+  std::cout << "int: " << static_cast<int>(value) << "\n";
+  std::cout << std::fixed << std::setprecision(1);
+  std::cout << "float: " << static_cast<float>(value) << "f\n";
+  std::cout << "double: " << static_cast<double>(value) << std::endl;
 }
 
-void ScalarConverter::convDouble(std::string str, t_values& val, int isFloat) {
+void ScalarConverter::convInt(std::string str) {
   std::stringstream ss(str);
   std::stringstream sc(str);
-  double c;
+  double check;
+  int value;
 
-  sc >> c;
-  if (isFloat && (c > FLT_MAX || c < FLT_MIN))
+  sc >> check;
+  if (check > INT_MAX || check < INT_MIN)
     throw std::exception();
-  ss >> val.dpoint;
-  val.integer = static_cast<int>(val.dpoint);
-  val.fpoint = static_cast<float>(val.dpoint);
-  val.character = static_cast<char>(val.dpoint);
+  ss >> value;
+  std::cout << "char: ";
+  if (value < 32 || value > 126)
+    std::cout << "not displayable\n";
+  else
+    std::cout << static_cast<char>(value) << "\n";
+  std::cout << "int: " << value << "\n";
+  std::cout << std::fixed << std::setprecision(1);
+  std::cout << "float: " << static_cast<float>(value) << "f\n";
+  std::cout << "double: " << static_cast<double>(value) << std::endl;
 }
 
-void ScalarConverter::printVals(t_values& vals) {
-  if (vals.character < 32 || vals.character > 126)
-    std::cout << "char: not displayable" << std::endl;
+void ScalarConverter::convDouble(std::string str, int isFloat) {
+  std::stringstream ss(str);
+  std::stringstream sc(str);
+  double value;
+  double check;
+
+  sc >> check;
+  if (isFloat && (check > FLT_MAX || check < FLT_MIN))
+    throw std::exception();
+  ss >> value;
+  std::cout << "char: ";
+  if (value < 32 || value > 126)
+    std::cout << "not displayable\n";
   else
-    std::cout << "char: " << vals.character << std::endl;
-  std::cout << "int: " << vals.integer << std::endl;
-  if (fmodf(vals.fpoint, 1.0) == 0)
+    std::cout << static_cast<char>(value) << "\n";
+  std::cout << "int: ";
+  if (value > INT_MAX || value < INT_MIN)
+    std::cout << "impossible\n";
+  else
+    std::cout << static_cast<int>(value) << "\n";
+  if (fmodf(static_cast<float>(value), 1.0) == 0)
     std::cout << std::fixed << std::setprecision(1);
   else
     std::cout << std::setprecision(PREC);
-  std::cout << "float: " << vals.fpoint << "f" << std::endl;
-  std::cout << "double: " << vals.dpoint << std::endl;
-
+  std::cout << "float: " << static_cast<float>(value) << "f\n";
+  std::cout << "double: " << value << std::endl;
 }
 
 void ScalarConverter::convert(std::string str) {
-  t_values vals;
   int isFloat = 0;
 
   if (str.find("f") != str.npos) {
@@ -109,13 +121,12 @@ void ScalarConverter::convert(std::string str) {
   switch (getType(str))
   {
     case 1:
-      convChar(str, vals); break;
+      convChar(str); break;
     case 2:
-      convDouble(str, vals, isFloat); break;
+      convDouble(str, isFloat); break;
     case 3:
-      convInt(str, vals); break;
+      convInt(str); break;
     default:
-      std::cerr << "not convertable" << std::endl; return;
+      std::cerr << "not convertable" << std::endl;
   }
-  printVals(vals);
 }
