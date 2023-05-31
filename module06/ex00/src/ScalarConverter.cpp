@@ -6,14 +6,16 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 11:01:26 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/05/31 11:19:28 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
 
 bool ScalarConverter::checkDoubleOverflow(std::string str, double check) {
-  std::string lim = std::to_string(check);
+  std::ostringstream strs;
+  strs << check;
+  std::string lim = strs.str();
 
   if (str.find(".") > 38)
     return (false);
@@ -101,11 +103,13 @@ void ScalarConverter::convChar(std::string str) {
   if (check > INT_MAX || check < INT_MIN)
     throw std::exception();
   ss >> value;
+  if (!str.compare(" "))
+    value = ' ';
   std::cout << "char: ";
   if (value < 32 || value > 126)
-    std::cout << "not displayable\n";
+    std::cout << "Non displayable\n";
   else
-    std::cout << static_cast<char>(value) << "\n";
+    std::cout << "'" << value<< "'\n";
   std::cout << "int: " << static_cast<int>(value) << "\n";
   std::cout << std::fixed << std::setprecision(1);
   std::cout << "float: " << static_cast<float>(value) << "f\n";
@@ -126,7 +130,7 @@ void ScalarConverter::convInt(std::string str) {
   if (value < 32 || value > 126)
     std::cout << "not displayable\n";
   else
-    std::cout << static_cast<char>(value) << "\n";
+    std::cout << "'" << static_cast<char>(value) << "'\n";
   std::cout << "int: " << value << "\n";
   std::cout << std::fixed << std::setprecision(1);
   std::cout << "float: " << static_cast<float>(value) << "f\n";
@@ -147,7 +151,7 @@ void ScalarConverter::convDouble(std::string str, int isFloat) {
   if (value < 32 || value > 126)
     std::cout << "not displayable\n";
   else
-    std::cout << static_cast<char>(value) << "\n";
+    std::cout << "'" << static_cast<char>(value) << "'\n";
   std::cout << "int: ";
   if (value > INT_MAX || value < INT_MIN)
     std::cout << "impossible\n";
