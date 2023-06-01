@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 16:51:16 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 22:15:48 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:06:37 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,15 @@ void identify(Base& p) {
   try {
     (void)dynamic_cast<A&>(p);
     std::cout << "Class Type of Reference is A" << std::endl;
-  } catch(std::exception& e) {}
+  } catch(std::exception&) {}
   try {
     (void)dynamic_cast<B&>(p);
     std::cout << "Class Type of Reference is B" << std::endl;
-  } catch(std::exception& e) {}
+  } catch(std::exception&) {}
   try {
     (void)dynamic_cast<C&>(p);
     std::cout << "Class Type of Reference is C" << std::endl;
-  } catch(std::exception& e) {}
-
+  } catch(std::exception&) {}
 }
 
 int main(void) {
@@ -65,7 +64,7 @@ int main(void) {
     identify(test);
     identify(*test);
     delete test;
-  } catch (std::exception& e) {
+  } catch (std::exception&) {
     std::cerr << "random fail occurred" << std::endl;
   }
 }

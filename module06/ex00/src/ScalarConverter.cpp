@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/05/31 16:59:39 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/01 08:16:14 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ bool ScalarConverter::checkDoubleOverflow(std::string str, double check) {
   strs << check;
   std::string lim = strs.str();
 
+  if (check == DBL_MIN)
+    lim = lim.substr(1, lim.length());
   if (str.find(".") > 308)
     return (false);
   if (str.find(".") < 308)
@@ -26,13 +28,6 @@ bool ScalarConverter::checkDoubleOverflow(std::string str, double check) {
       return (false);
     if (str.at(i) < lim.at(i))
       return (true);
-  }
-  if (str.find(".") == str.npos)
-    return (true);
-  str = str.substr(str.find(".") + 1, str.length());
-  for (size_t i = 0; i < str.length(); ++i){
-    if (str.at(i) != '0')
-      return (false);
   }
   return (true);
 }
@@ -95,13 +90,8 @@ bool ScalarConverter::handlePseudos(std::string str) {
 
 void ScalarConverter::convChar(std::string str) {
   std::stringstream ss(str);
-  std::stringstream sc(str);
-  double check;
   char value;
 
-  sc >> check;
-  if (check > INT_MAX || check < INT_MIN)
-    throw std::exception();
   ss >> value;
   if (!str.compare(" "))
     value = ' ';
