@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/28 13:32:04 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/01 08:16:14 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/01 09:36:23 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ bool ScalarConverter::checkDoubleOverflow(std::string str, double check) {
 
   if (check == DBL_MIN)
     lim = lim.substr(1, lim.length());
-  if (str.find(".") > 308)
+  if (str.find(".") != str.npos)
+    str = str.substr(0, str.find("."));
+  if (str.length() > 308)
     return (false);
-  if (str.find(".") < 308)
+  if (str.length() < 308)
     return (true);
   for (size_t i = 0; i < 38; ++i) {
     if (str.at(i) > lim.at(i))
