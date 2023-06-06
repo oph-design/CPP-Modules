@@ -6,20 +6,34 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 14:02:08 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/01 20:53:10 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:21:09 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "iter.hpp"
+#include <iostream>
 
-int main (void)
+class Awesome
 {
-  char array1[3] = {'H', 'W', 'O'};
-  iter(array1, 3, &::xToOut);
+  public:
+    Awesome( void ) : _n( 42 ) { return; }
+    int get( void ) const { return this->_n; }
+  private:
+    int _n;
+};
 
-  std::string array2[3] = {"Hey", "Hello", "World"};
-  iter(array2, 3, &::xToOut);
+std::ostream & operator<<( std::ostream & o, Awesome const & rhs ) { o << rhs.get(); return o; }
 
-  int array3[3] = {4, 5, 6};
-  iter(array3, 3, &::xToOut);
+template< typename T >
+void print( T const & x ) { std::cout << x << std::endl; return; }
+
+
+int main() {
+  int tab[] = { 0, 1, 2, 3, 4 };  // <--- I never understood why you can't write int[] tab. Wouldn't that make more sense?
+  Awesome tab2[5];
+
+  iter( tab, 5, print<const int> );
+  iter( tab2, 5, print<Awesome> );
+
+  return 0;
 }

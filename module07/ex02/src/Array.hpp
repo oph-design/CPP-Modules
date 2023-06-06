@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 15:57:18 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/01 20:47:49 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:27:50 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,10 @@ class Array {
     : _values(new T[rhs._size]), _size(rhs._size) {
     for (unsigned int i = 0; i < rhs._size; ++i)
       _values[i] = rhs._values[i];
+  }
+
+  ~Array(void) {
+    delete [] _values;
   }
 
   Array<T>& operator=(const Array<T> & rhs) {

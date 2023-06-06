@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/01 11:34:11 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/01 20:53:01 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/06 11:22:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,13 @@
 
 # include <iostream>
 
-template<typename T>
-void iter(T array[], size_t len, void (*func)(T input)) {
+template<typename T, typename V>
+void iter(T* array, size_t len, V func) {
+  if (array == NULL || func == NULL)
+    return ;
   for (size_t i = 0; i < len; ++i) {
     func(array[i]);
   }
-}
-
-template<typename T>
-void xToOut(T x) {
-  std::cout << x << std::endl;
 }
 
 #endif
