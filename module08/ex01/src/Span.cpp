@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:32:29 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/12 10:13:03 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:38:01 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,3 @@ int Span::longestSpan() {
     throw std::runtime_error("too few values");
   return (*(_vec.end() - 1) - *_vec.begin());
 }
-
-// std::ostream& operator<<(std::ostream& out, const Span& rhs) {
-//   out << "---------------\n";
-//   for (std::vector<int>::iterator ptr = rhs.getVec().begin(); ptr < rhs.getVec().end(); ptr++)
-//         cout << *ptr << " ";
-//   out << "---------------" << std::endl;
-//   return (out);
-// }
-

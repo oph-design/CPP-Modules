@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Span.hpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/12 10:38:09 by oheinzel          #+#    #+#             */
+/*   Updated: 2023/06/12 10:38:11 by oheinzel         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SPAN_H
 # define SPAN_H
 
@@ -27,7 +39,5 @@ class Span {
     int shortestSpan();
     int longestSpan();
 };
-
-// std::ostream& operator<<(std::ostream& out, const Span& rhs);
 
 #endif
