@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 17:33:23 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/08 20:53:59 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:18:59 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 int main()
 {
   Span sp = Span(7);
+  try {
+    sp.longestSpan();
+  } catch (std::exception& e) {
+    std::cout << e.what() << std::endl;
+  }
   sp.addNumber(6);
   sp.addNumber(5);
   sp.addNumber(17);

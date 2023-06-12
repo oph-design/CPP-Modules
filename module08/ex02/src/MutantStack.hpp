@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:10:01 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/08 22:14:07 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 09:12:31 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ class MutantStack : public std::stack<T> {
  public:
   typedef typename std::stack<T>::container_type::iterator iterator;
   MutantStack(void) : std::stack<T>() {}
-  //MutantStack(C& container) :  std::stack<T>(container) {}
   MutantStack(const MutantStack& rhs) : std::stack<T>(rhs) {}
   ~MutantStack(void) {}
   MutantStack& operator=(const MutantStack& rhs) {

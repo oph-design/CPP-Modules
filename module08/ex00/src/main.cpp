@@ -6,12 +6,11 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 15:55:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/08 15:12:55 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:16:13 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
-#include <iostream>
 
 int main(void) {
   try {
@@ -20,17 +19,8 @@ int main(void) {
     vect.push_back(10);
     vect.push_back(20);
     vect.push_back(30);
-    std::cout << *easyfind(vect, 30) << std::endl;
+    std::cout << *easyfind(vect, 10) << std::endl;
     std::cout << *easyfind(vect, 40) << std::endl;
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
-  }
-  try {
-    std::cout << "\033[1marray:\033[0m" << std::endl;
-    std::array<int, 3> arr;
-    arr.fill(30);
-    std::cout << *easyfind(arr, 30) << std::endl;
-    std::cout << *easyfind(arr, 40) << std::endl;
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
   }
@@ -46,23 +36,12 @@ int main(void) {
     std::cout << e.what() << std::endl;
   }
   try {
-    std::cout << "\033[1mforward_list:\033[0m" << std::endl;
-    std::forward_list<int> forl;
-    forl.push_front(10);
-    forl.push_front(20);
-    forl.push_front(30);
-    std::cout << *easyfind(forl, 30) << std::endl;
-    std::cout << *easyfind(forl, 40) << std::endl;
-  } catch (std::exception& e) {
-    std::cout << e.what() << std::endl;
-  }
-  try {
     std::cout << "\033[1mlist:\033[0m" << std::endl;
     std::list<int> lst;
     lst.push_back(10);
     lst.push_back(20);
     lst.push_back(30);
-    std::cout << *easyfind(lst, 30) << std::endl;
+    std::cout << *easyfind(lst, 10) << std::endl;
     std::cout << *easyfind(lst, 40) << std::endl;
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;
@@ -73,7 +52,7 @@ int main(void) {
     stck.push(10);
     stck.push(20);
     stck.push(30);
-    std::cout << *easyfind(stck, 30) << std::endl;
+    std::cout << *easyfind(stck, 20) << std::endl;
     std::cout << *easyfind(stck, 40) << std::endl;
   } catch (std::exception& e) {
     std::cout << e.what() << std::endl;

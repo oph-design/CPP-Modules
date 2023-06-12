@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:32:29 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/08 18:47:34 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:13:03 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ int Span::shortestSpan() {
   if (_vec.size() < 2)
     throw std::runtime_error("too few values");
   while (iter < (_vec.end() - 1)) {
-    tmp = -(*iter - *(++iter));
-    if (tmp < span)
-      span = tmp;
+    tmp = *iter;
+    iter++;
+    tmp -= *iter;
+    if (-tmp < span)
+      span = -tmp;
   }
   return (span);
 }

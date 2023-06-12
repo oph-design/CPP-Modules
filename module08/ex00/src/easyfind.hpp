@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 17:18:34 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/08 21:47:03 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:15:42 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 
 # include <algorithm>
 # include <vector>
-# include <array>
 # include <deque>
-# include <forward_list>
 # include <list>
 # include <stack>
 # include <queue>
+# include <iostream>
 
 template<typename T>
 typename T::container_type& getUnderlyingContainer(T& containerAdapter) {

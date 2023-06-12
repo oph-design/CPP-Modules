@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 21:52:46 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/08 22:14:18 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/12 10:31:05 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,17 @@ int main(void) {
   a.push(12);
   a.push(13);
   a.push(14);
-  std::cout << a.top() << std::endl;
   MutantStack<int>::iterator iter = std::find(a.begin(), a.end(), 12);
-  std::cout << *iter << std::endl;
+  std::cout << "iterator to 12:\t" << *iter << std::endl;
+  std::cout << "a.top:\t\t" << a.top() << std::endl;
+  a.pop();
+  std::cout << "new a.top:\t" << a.top() << std::endl;
+  std::cout << "a.empty:\t" << a.empty() << std::endl;
+  std::cout << "a.size:\t\t" << a.size() << std::endl;
+  MutantStack<int> b(a);
+  std::cout << "b.top:\t\t" << b.top() << std::endl;
+  b.pop();
+  b.pop();
+  a = b;
+  std::cout << "a.top after assignement: " << a.top() << std::endl;
 }
