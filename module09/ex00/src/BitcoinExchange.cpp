@@ -6,22 +6,22 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:16:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/16 11:08:28 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:12:40 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange::BitcoinExchange(void)
-  : _content(std::multimap<int, double>()), _data(convertData()){}
+  : _content(std::multimap<int, float>()), _data(convertData()) {}
 
-BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()){
-  _content = std::multimap<int, double>();
+BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()) {
+  _content = std::multimap<int, float>();
   std::ifstream file(filename);
   std::string input;
   std::string helper;
   int date;
-  double value;
+  float value;
 
   if (!file.is_open())
     throw std::runtime_error("Error: could not open file");
@@ -29,7 +29,7 @@ BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()){
     if (input.length() <= 2 || !input.compare("date | value"))
       continue;
     if (input.find("|") == input.npos) {
-      _content.insert(std::pair<int, double>(std::atoi(input.c_str()), 0));
+      _content.insert(std::pair<int, float>(std::atoi(input.c_str()), 0));
       continue;
     }
     input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
@@ -37,17 +37,17 @@ BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()){
     helper.erase(std::remove(helper.begin(), helper.end(), '-'), helper.end());
     date = std::atoi(helper.c_str());
     value = std::stod(input.substr(input.find("|") + 1));
-    _content.insert(std::pair<int, double>(date, value));
+    _content.insert(std::pair<int, float>(date, value));
   }
   file.close();
 }
 
-std::multimap<int, double> BitcoinExchange::convertData(void) {
+std::multimap<int, float> BitcoinExchange::convertData(void) {
  std::ifstream file("data.csv");
- std::multimap<int, double> res;
+ std::multimap<int, float> res;
  std::string input;
  int date;
- double value;
+ float value;
 
  while(std::getline(file, input)) {
   if (!input.compare("date,exchange_rate"))
@@ -55,7 +55,7 @@ std::multimap<int, double> BitcoinExchange::convertData(void) {
   input.erase(std::remove(input.begin(), input.end(), '-'), input.end());
   date = std::atoi(input.substr(0, input.find(",")).c_str());
   value = std::stof(input.substr(input.find(",") + 1));
-  res.insert(std::pair<int, double>(date, value));
+  res.insert(std::pair<int, float>(date, value));
  }
  return (res);
 }
@@ -73,7 +73,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
   return (*this);
 }
 
-std::multimap<int, double> BitcoinExchange::getContent(void) const {
+std::multimap<int, float> BitcoinExchange::getContent(void) const {
   return (this->_content);
 }
 
@@ -87,7 +87,7 @@ std::string BitcoinExchange::formatDate(int date) {
   return (res);
 }
 
-bool BitcoinExchange::edgeTheCases(std::pair<int, double> set) {
+bool BitcoinExchange::edgeTheCases(std::pair<int, float> set) {
   if (set.first % 100 > 31 || (set.first / 100) % 100 > 12
       || set.first % 100 == 0 ||  (set.first / 100) % 100 == 0) {
     std::cout << "Error: bad input => " << formatDate(set.first) << "\n";
@@ -97,17 +97,17 @@ bool BitcoinExchange::edgeTheCases(std::pair<int, double> set) {
     std::cout << "Error: not a positive number\n";
     return (false);
   }
-  if (set.second > 2147483647) {
+  if (set.second > 1000) {
     std::cout << "Error: too large a number\n";
     return (false);
   }
   return (true);
 }
 
-void BitcoinExchange::calcAmount(std::pair<int, double> set) {
+void BitcoinExchange::calcAmount(std::pair<int, float> set) {
   if (!edgeTheCases(set))
     return;
-  std::multimap<int, double>::iterator it = _data.begin();
+  std::multimap<int, float>::iterator it = _data.begin();
   while (it != _data.end()) {
     if (it->first < set.first) {
       it++; continue;
@@ -123,15 +123,15 @@ void BitcoinExchange::calcAmount(std::pair<int, double> set) {
 }
 
 void BitcoinExchange::calcBitcoinExchange(void) {
-  for (std::multimap<int, double>::iterator it = _content.begin();
+  for (std::multimap<int, float>::iterator it = _content.begin();
       it != _content.end(); ++it) {
     this->calcAmount(*it);
   }
 }
 
 // std::ostream& operator<<(std::ostream& out, const BitcoinExchange& rhs) {
-//   std::multimap<int, double> content = rhs.getContent();
-//   for (std::map<int, double>::iterator it = content.begin();
+//   std::multimap<int, float> content = rhs.getContent();
+//   for (std::map<int, float>::iterator it = content.begin();
 //         it != content.end(); ++it)
 //     out << it->first << " | " << it->second << std::endl;
 //   return (out);

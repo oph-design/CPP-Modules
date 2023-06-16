@@ -21,12 +21,12 @@
 
 class BitcoinExchange {
  private:
-  std::multimap<int, double> _content;
-  std::multimap<int, double> _data;
-  void calcAmount(std::pair<int, double> set);
-  static std::multimap<int, double> convertData(void);
+  std::multimap<int, float> _content;
+  std::multimap<int, float> _data;
+  void calcAmount(std::pair<int, float> set);
+  static std::multimap<int, float> convertData(void);
   static std::string formatDate(int date);
-  static bool edgeTheCases(std::pair<int, double> set);
+  static bool edgeTheCases(std::pair<int, float> set);
 
  public:
   BitcoinExchange(void);
@@ -35,7 +35,7 @@ class BitcoinExchange {
   ~BitcoinExchange(void);
   BitcoinExchange& operator=(const BitcoinExchange& rhs);
   void calcBitcoinExchange(void);
-  std::multimap<int, double> getContent(void) const;
+  std::multimap<int, float> getContent(void) const;
 };
 
 // std::ostream& operator<<(std::ostream& out, const BitcoinExchange& rhs);
