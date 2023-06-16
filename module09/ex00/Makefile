@@ -6,13 +6,13 @@
 #    By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/14 13:44:40 by oheinzel          #+#    #+#              #
-#    Updated: 2023/06/13 16:30:19 by oheinzel         ###   ########.fr        #
+#    Updated: 2023/06/16 11:07:21 by oheinzel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	test
 SRCS_DIR	=	src/
-SRC_FILES	=	main Balance
+SRC_FILES	=	main BitcoinExchange
 OBJS_DIR	=	obj/
 COMP			=	c++
 CFLAGS		=	-g -Wall -Werror -Wextra -std=c++98

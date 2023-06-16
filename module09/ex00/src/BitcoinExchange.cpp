@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   BitcoinExchange.cpp                                        :+:      :+:    :+:   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:16:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/16 10:53:51 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/16 11:08:28 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ BitcoinExchange::BitcoinExchange(void)
   : _content(std::multimap<int, double>()), _data(convertData()){}
 
 BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()){
-  this->_content = std::multimap<int, double>();
+  _content = std::multimap<int, double>();
   std::ifstream file(filename);
   std::string input;
   std::string helper;
@@ -26,14 +26,18 @@ BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()){
   if (!file.is_open())
     throw std::runtime_error("Error: could not open file");
   while (std::getline(file, input)) {
-    if (input.find("|") == input.npos || !input.compare("date | value"))
+    if (input.length() <= 2 || !input.compare("date | value"))
       continue;
+    if (input.find("|") == input.npos) {
+      _content.insert(std::pair<int, double>(std::atoi(input.c_str()), 0));
+      continue;
+    }
     input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
     helper = input.substr(0, input.find("|"));
     helper.erase(std::remove(helper.begin(), helper.end(), '-'), helper.end());
     date = std::atoi(helper.c_str());
-    value = std::stof(input.substr(input.find("|") + 1));
-    this->_content.insert(std::pair<int, double>(date, value));
+    value = std::stod(input.substr(input.find("|") + 1));
+    _content.insert(std::pair<int, double>(date, value));
   }
   file.close();
 }
