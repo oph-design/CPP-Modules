@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 14:57:23 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/16 18:25:21 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/16 18:28:37 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ int RPN::calcNext(char c) {
   int m = this->_nums.top();
   this->_nums.pop();
   switch (c) {
-    case 43:
+    case '+':
       return (m + n);
-    case 45:
+    case '-':
       return (m - n);
-    case 47:
+    case '/':
       return (m / n);
-    case 42:
+    case '*':
       return (m * n);
     default:
       throw std::runtime_error("Error");
