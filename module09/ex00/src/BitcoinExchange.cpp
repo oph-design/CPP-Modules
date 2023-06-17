@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:16:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/16 17:23:47 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:42:30 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ BitcoinExchange::BitcoinExchange(void)
 
 BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()) {
   _content = std::multimap<int, float>();
-  std::ifstream file(filename);
+  std::ifstream file(filename.c_str());
   std::string input;
   std::string helper;
   int date;
@@ -36,7 +36,7 @@ BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()) {
     helper = input.substr(0, input.find("|"));
     helper.erase(std::remove(helper.begin(), helper.end(), '-'), helper.end());
     date = std::atoi(helper.c_str());
-    value = std::stod(input.substr(input.find("|") + 1));
+    value = std::atof(input.substr(input.find("|") + 1).c_str());
     _content.insert(std::pair<int, float>(date, value));
   }
   file.close();
@@ -54,7 +54,7 @@ std::multimap<int, float> BitcoinExchange::convertData(void) {
        continue;
    input.erase(std::remove(input.begin(), input.end(), '-'), input.end());
    date = std::atoi(input.substr(0, input.find(",")).c_str());
-   value = std::stof(input.substr(input.find(",") + 1));
+   value = std::atof(input.substr(input.find(",") + 1).c_str());
    res.insert(std::pair<int, float>(date, value));
   }
   return (res);
@@ -77,10 +77,10 @@ std::multimap<int, float> BitcoinExchange::getContent(void) const {
 }
 
 std::string BitcoinExchange::formatDate(int date) {
-  // std::ostringstream raw(date);
-  std::string res = std::to_string(date);
+  std::ostringstream raw;
+  raw << date;
+  std::string res = raw.str();
 
-  //raw >> res;
   res.insert(4, "-");
   res.insert(7, "-");
   return (res);
@@ -108,7 +108,7 @@ void BitcoinExchange::calcAmount(std::pair<int, float> set) {
     return;
   std::multimap<int, float>::iterator it = _data.begin();
   while (it != _data.end()) {
-    if (it->first < set.first) {j
+    if (it->first < set.first) {
       it++; continue;
     }
     if (it->first == set.first)

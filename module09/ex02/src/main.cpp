@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:10:15 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/17 11:18:52 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:12:29 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int main(int argc, char *argv[]) {
   (void)argc;
   PmergeMe test(argc - 1, ++argv);
-  test.mergeAndInsert();
+  test.mergeAndInsertVec();
+  test.mergeAndInsertDq();
   return (0);
 }

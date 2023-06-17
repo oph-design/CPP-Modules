@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 22:45:14 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/17 11:44:17 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:36:08 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,23 @@
 
 # include "PmergeMe.hpp"
 
-template <typename Iterator>
-void PmergeMe::insertionSort(Iterator begin, Iterator end) {
-    for (Iterator i = begin + 1; i != end; ++i) {
-        int key = *i;
-        Iterator j = i - 1;
-
-        while (j >= begin && *j > key) {
-            *(j + 1) = *j;
-            --j;
-        }
-        *(j + 1) = key;
-    }
+template <typename Container>
+void	PmergeMe::sort_pairs(Container& pairs)
+{
+	for (typename Container::iterator it = (pairs.begin() + 1); it != pairs.end(); it++)
+	{
+		std::pair<int, int> val = *it;
+		typename Container::iterator ite = (it - 1);
+		while (ite >= pairs.begin() && val.first < ite->first)
+			*(ite + 1) = *ite--;
+		*(ite + 1) = val;
+	}
 }
 
-template <typename Iterator, typename Container>
-void PmergeMe::merge(Iterator begin, Iterator mid, Iterator end) {
-    Container temp;
-    Iterator i = begin, j = mid + 1;
-    while (i <= mid && j <= end) {
-        if (*i <= *j)
-            temp.push_back(*i++);
-        else
-            temp.push_back(*j++);
-    }
-    while (i <= mid)
-        temp.push_back(*i++);
-    while (j <= end)
-        temp.push_back(*j++);
-    std::copy(temp.begin(), temp.end(), begin);
+template <typename Container>
+void PmergeMe::insertIntoContainer(Container& vec, int value) {
+    typename Container::iterator it = std::lower_bound(vec.begin(), vec.end(), value);
+    vec.insert(it, value);
 }
-
-template <typename Iterator, typename Container>
-void PmergeMe::mergeInsertionSort(Iterator begin, Iterator end) {
-    if (std::distance(begin, end) <= 10) {
-        insertionSort(begin, end);
-    } else {
-        Iterator mid = begin + std::distance(begin, end) / 2;
-        mergeInsertionSort<Iterator, Container>(begin, mid);
-        mergeInsertionSort<Iterator, Container>(mid + 1, end);
-        merge<Iterator, Container>(begin, mid, end);
-    }
-}
-
-// template <typename Container>
-// Container PmergeMe::mergeInsertionSort(Container arr) {
-//     mergeInsertionSort< typename Container<int>::iterator, Container >(arr.begin(), arr.end() - 1);
-//     return arr;
-// }
 
 #endif

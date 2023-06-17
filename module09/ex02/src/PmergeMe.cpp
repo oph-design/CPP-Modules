@@ -6,58 +6,111 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/17 11:47:07 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:23:35 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(void) : _vec(std::vector<int>()), _dq(std::deque<int>()) {}
+PmergeMe::PmergeMe(void) : _vec(pair_vec()), _dq(pair_dq()), _strag(NULL) {}
 
-PmergeMe::PmergeMe(const PmergeMe& rhs) {
+PmergeMe::PmergeMe(const PmergeMe& rhs) : _strag(NULL) {
   *this = rhs;
 }
 
 PmergeMe::PmergeMe(int argc, char **argv)
-  : _vec(std::vector<int>()), _dq(std::deque<int>()) {
+  : _vec(pair_vec()), _dq(pair_dq()), _strag(NULL) {
+  std::pair<int, int> current;
+
+  for (int i = 0; i < argc; ++i) {
+    if (argv[i + 1]) {
+      current.first = std::atoi(argv[i++]);
+      current.second = std::atoi(argv[i]);
+    } else {
+      _strag = new int;
+      *_strag = std::atoi(argv[i]);
+      continue;
+    }
+    if (current.first < current.second)
+      swap(current.first, current.second);
+    _vec.push_back(current);
+    _dq.push_back(current);
+  }
+  std::cout << "Before: ";
   for (int i = 0; i < argc; ++i)
-    _vec.push_back(std::atoi(argv[i]));
-  for (int i = 0; i < argc; ++i)
-    _dq.push_back(std::atoi(argv[i]));
+    std::cout << argv[i] << " ";
+  std::cout << std::endl;
 }
 
-PmergeMe::~PmergeMe(void) {}
+PmergeMe::~PmergeMe(void) {
+  delete _strag;
+}
 
 PmergeMe&  PmergeMe::operator=(const PmergeMe& rhs) {
+  delete _strag;
+  if (rhs._strag)
+    _strag = new int;
+  *_strag = *(rhs._strag);
   this->_vec = rhs.getVec();
   this->_dq = rhs.getDq();
   return (*this);
 }
 
-std::vector<int> PmergeMe::getVec(void) const {
+PmergeMe::pair_vec PmergeMe::getVec(void) const {
   return (_vec);
 }
 
-std::deque<int> PmergeMe::getDq(void) const {
+PmergeMe::pair_dq PmergeMe::getDq(void) const {
   return (_dq);
 }
 
-void PmergeMe::setVec(std::vector<int> newVec) {
+void PmergeMe::setVec(pair_vec newVec) {
   _vec = newVec;
 }
-void PmergeMe::setDq(std::deque<int> newDq) {
+void PmergeMe::setDq(pair_dq newDq) {
   _dq = newDq;
 }
 
-void PmergeMe::mergeAndInsert(void) {
-  mergeInsertionSort<std::vector<int>::iterator, std::vector<int> >
-    (_vec.begin(), _vec.end() - 1);
-  for (size_t i = 0; i < _vec.size(); ++i)
-    std::cout << _vec[i] << std::endl;
-  mergeInsertionSort<std::deque<int>::iterator, std::deque<int> >
-    (_dq.begin(), _dq.end() - 1);
-  for (size_t i = 0; i < _dq.size(); ++i)
-    std::cout << _dq[i] << std::endl;
+void PmergeMe::mergeAndInsertVec(void) {
+  std::vector<int> vec_res;
+  clock_t start;
+  float time;
+
+  start = clock();
+  sort_pairs(_vec);
+  for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
+    vec_res.push_back(it->first);
+  for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
+    insertIntoContainer(vec_res, it->second);
+  if (_strag != NULL)
+    insertIntoContainer(vec_res, *_strag);
+  time = (clock() - start) * 1000000 / CLOCKS_PER_SEC ;
+  std::cout << "After: ";
+  for (size_t i = 0; i < vec_res.size(); ++i)
+    std::cout << vec_res[i] << " ";
+  std::cout << std::endl;
+  std::cout << "Time to process a range of " << vec_res.size();
+  std::cout << " elements with std::vector : " << std::fixed << time;
+  std::cout << " us" << std::endl;
+}
+
+void PmergeMe::mergeAndInsertDq(void) {
+  std::deque<int> dq_res;
+  clock_t start;
+  float time;
+
+  start = clock();
+  sort_pairs(_dq);
+  for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
+    dq_res.push_back(it->first);
+  for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
+    insertIntoContainer(dq_res, it->second);
+  if (_strag != NULL)
+    insertIntoContainer(dq_res, *_strag);
+  time = (clock() - start) * 1000000 / CLOCKS_PER_SEC;
+  std::cout << "Time to process a range of " << dq_res.size();
+  std::cout << " elements with std::deque : " << std::fixed << time;
+  std::cout << " us" << std::endl;
 }
 
 std::ostream& operator<<(std::ostream& out, const PmergeMe& rhs) {

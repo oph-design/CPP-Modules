@@ -14,10 +14,13 @@
 # define BitcoinExchange_H
 
 # include <iostream>
+# include <algorithm>
 # include <string>
 # include <map>
 # include <fstream>
 # include <sstream>
+# include <cstdlib>
+# include <cmath>
 
 class BitcoinExchange {
  private:

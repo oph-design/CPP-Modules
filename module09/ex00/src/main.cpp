@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:04:14 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/16 14:08:54 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/17 16:27:14 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool check_char(char c) {
 }
 
 bool check_input(std::string filename) {
-  std::ifstream file(filename);
+  std::ifstream file(filename.c_str());
   std::string input;
 
   if (!file.is_open())
@@ -25,7 +25,7 @@ bool check_input(std::string filename) {
   while (std::getline(file, input)) {
     if (input.at(0) == '\n' || !input.compare("date | value"))
       continue;
-    for (int i = 0, i < input.length(), ++i)
+    for (size_t i = 0; i < input.length(); ++i)
       if (check_char(input.at(i)))
         throw std::runtime_error("Error: bad input");
     if (input.substr(input.find("|")).find("|") != input.npos)
