@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/17 16:23:35 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:20:47 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,11 +111,4 @@ void PmergeMe::mergeAndInsertDq(void) {
   std::cout << "Time to process a range of " << dq_res.size();
   std::cout << " elements with std::deque : " << std::fixed << time;
   std::cout << " us" << std::endl;
-}
-
-std::ostream& operator<<(std::ostream& out, const PmergeMe& rhs) {
-  (void)rhs;
-  out << "---------------\n";
-  out << "---------------" << std::endl;
-  return (out);
 }

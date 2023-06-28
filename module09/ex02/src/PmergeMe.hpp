@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:07:57 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/17 16:00:02 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/06/28 10:21:28 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ class PmergeMe {
     template <typename Container>
     static void insertIntoContainer(Container& vec, int value);
 };
-
-std::ostream& operator<<(std::ostream& out, const PmergeMe& rhs);
 
 # include "PmergeMe.tpp"
 
