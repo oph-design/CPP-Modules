@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:10:15 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/06 17:02:49 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:32:10 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,6 @@ int main(int argc, char *argv[]) {
     return (std::cerr << "bad input" << std::endl, 1);
   PmergeMe sortation(argc - 1, ++argv);
   sortation.mergeAndInsertVec();
-  //sortation.mergeAndInsertDq();
+  sortation.mergeAndInsertDq();
   return (0);
 }

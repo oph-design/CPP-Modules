@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/06 17:02:37 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/06 18:56:52 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,14 @@ PmergeMe::PmergeMe(const PmergeMe& rhs) : _strag(NULL) {
 
 PmergeMe::PmergeMe(int argc, char **argv)
   : _vec(pair_vec()), _dq(pair_dq()), _strag(NULL) {
-  std::pair<int, int> current;
   int num;
 
-  for (int i = 0; i < argc; ++i) {
-    if (argv[i + 1]) {
-      current.first = std::atoi(argv[i++]);
-      current.second = std::atoi(argv[i]);
-    } else {
-      _strag = new int;
-      *_strag = std::atoi(argv[i]);
-      continue;
-    }
-    if (current.first < current.second)
-      swap(current.first, current.second);
-    _vec.push_back(current);
-    _dq.push_back(current);
+  if (argc % 2 != 0) {
+    _strag = new int;
+    *_strag = std::atoi(argv[argc - 1]);
   }
+  _begins.first = fillContainer(argv, argc, _vec);
+  _begins.second = fillContainer(argv, argc, _dq);
   std::cout << "Before: ";
   for (int i = 0; i < argc; ++i) {
     std::istringstream(std::string(argv[i])) >> num;
@@ -54,24 +45,9 @@ PmergeMe&  PmergeMe::operator=(const PmergeMe& rhs) {
   if (rhs._strag)
     _strag = new int;
   *_strag = *(rhs._strag);
-  this->_vec = rhs.getVec();
-  this->_dq = rhs.getDq();
+  this->_vec = rhs._vec;
+  this->_dq = rhs._dq;
   return (*this);
-}
-
-PmergeMe::pair_vec PmergeMe::getVec(void) const {
-  return (_vec);
-}
-
-PmergeMe::pair_dq PmergeMe::getDq(void) const {
-  return (_dq);
-}
-
-void PmergeMe::setVec(pair_vec newVec) {
-  _vec = newVec;
-}
-void PmergeMe::setDq(pair_dq newDq) {
-  _dq = newDq;
 }
 
 void PmergeMe::mergeAndInsertVec(void) {
@@ -87,7 +63,7 @@ void PmergeMe::mergeAndInsertVec(void) {
     insertIntoContainer(vec_res, it->second);
   if (_strag != NULL)
     insertIntoContainer(vec_res, *_strag);
-  time = (clock() - start) * 1000000 / CLOCKS_PER_SEC ;
+  time = ((clock() - start) + _begins.first) * 1000000 / CLOCKS_PER_SEC ;
   std::cout << "After: ";
   for (size_t i = 0; i < vec_res.size(); ++i)
     std::cout << vec_res[i] << " ";
@@ -110,7 +86,7 @@ void PmergeMe::mergeAndInsertDq(void) {
     insertIntoContainer(dq_res, it->second);
   if (_strag != NULL)
     insertIntoContainer(dq_res, *_strag);
-  time = (clock() - start) * 1000000 / CLOCKS_PER_SEC;
+  time = ((clock() - start) + _begins.second) * 1000000 / CLOCKS_PER_SEC;
   std::cout << "Time to process a range of " << dq_res.size();
   std::cout << " elements with std::deque : " << std::fixed << time;
   std::cout << " us" << std::endl;
