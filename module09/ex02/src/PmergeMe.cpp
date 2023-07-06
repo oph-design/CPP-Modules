@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/28 10:20:47 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/06 17:02:37 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ PmergeMe::PmergeMe(const PmergeMe& rhs) : _strag(NULL) {
 PmergeMe::PmergeMe(int argc, char **argv)
   : _vec(pair_vec()), _dq(pair_dq()), _strag(NULL) {
   std::pair<int, int> current;
+  int num;
 
   for (int i = 0; i < argc; ++i) {
     if (argv[i + 1]) {
@@ -37,8 +38,10 @@ PmergeMe::PmergeMe(int argc, char **argv)
     _dq.push_back(current);
   }
   std::cout << "Before: ";
-  for (int i = 0; i < argc; ++i)
-    std::cout << argv[i] << " ";
+  for (int i = 0; i < argc; ++i) {
+    std::istringstream(std::string(argv[i])) >> num;
+    std::cout << num << " ";
+  }
   std::cout << std::endl;
 }
 
@@ -77,7 +80,7 @@ void PmergeMe::mergeAndInsertVec(void) {
   float time;
 
   start = clock();
-  sort_pairs(_vec);
+  mergeSort<pair_vec::iterator, pair_vec >(_vec.begin(), _vec.end());
   for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
     vec_res.push_back(it->first);
   for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
@@ -100,7 +103,7 @@ void PmergeMe::mergeAndInsertDq(void) {
   float time;
 
   start = clock();
-  sort_pairs(_dq);
+  mergeSort<pair_dq::iterator, pair_dq>(_dq.begin(), _dq.end());
   for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
     dq_res.push_back(it->first);
   for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
@@ -111,4 +114,9 @@ void PmergeMe::mergeAndInsertDq(void) {
   std::cout << "Time to process a range of " << dq_res.size();
   std::cout << " elements with std::deque : " << std::fixed << time;
   std::cout << " us" << std::endl;
+}
+
+bool operator<=(const std::pair<int, int> left,
+                const std::pair<int, int> right) {
+  return (left.first <= right.first);
 }

@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:07:57 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/28 10:21:28 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/06 10:22:24 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <string>
 # include <vector>
 # include <deque>
+# include <sstream>
 # include <ctime>
 # include <cstdlib>
 
@@ -47,11 +48,16 @@ class PmergeMe {
     pair_vec _vec;
     pair_dq _dq;
     int* _strag;
-    template <typename Container>
-    static void	sort_pairs(Container& pairs);
+    template <typename Iterator, typename Sequence>
+    void merge(Iterator begin, Iterator mid, Iterator end);
+    template <typename Iterator, typename Sequence>
+    void mergeSort(Iterator begin, Iterator end);
     template <typename Container>
     static void insertIntoContainer(Container& vec, int value);
 };
+
+bool operator<=(const std::pair<int, int> left,
+                const std::pair<int, int> right);
 
 # include "PmergeMe.tpp"
 
