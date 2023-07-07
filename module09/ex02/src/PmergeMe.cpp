@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/07 11:34:29 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:37:22 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void PmergeMe::mergeAndInsertDq(void) {
 }
 
 bool operator<=(const std::pair<int, int> left,
-                const std::pair<int, int> right) {
+  const std::pair<int, int> right) {
   return (left.first <= right.first);
 }

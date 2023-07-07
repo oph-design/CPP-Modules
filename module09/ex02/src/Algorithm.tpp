@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/07 11:18:25 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/07 11:33:53 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:35:43 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,24 +72,25 @@ void mergeSort(Iterator first, Iterator last) {
 
 template <typename Container>
 void jakobFactory(Container& cont, size_t size) {
-  int j = 0;
-  int current = 0;
-  int prev = 0;
-  int tmp = 0;
+  int j = 2;
+  size_t i = 2;
+  long current = 1;
+  long prev = 0;
+  long tmp = 0;
 
-  cont.push_back(current);
-  for (size_t i = 0; i < size; ++i) {
+  cont.push_back(0);
+  if (size == 1) return;
+  cont.push_back(1);
+  if (size == 2) return;
+  while(i < size) {
     prev = current;
     current = pow(2, j++) - current;
+    if ((size_t)current >= size)
+      current = size - 1;
     tmp = current - 1;
-    if (current != prev)
-      cont.push_back(current);
-    if (prev == current)
-      continue;
-    while (i < size && tmp != prev) {
+    cont.push_back(current);
+    while (++i < size && tmp != prev)
       cont.push_back(tmp--);
-      i++;
-    }
   }
 }
 
