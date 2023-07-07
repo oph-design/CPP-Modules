@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:28:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/07 08:51:11 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 10:38:04 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <ctime>
 # include <cstdlib>
+# include <cmath>
+# include <algorithm>
 
 bool operator<=(const std::pair<int, int> left,
   const std::pair<int, int> right);
@@ -36,8 +38,7 @@ clock_t initSortedPairs(char *argv[], int argc, Container& cont) {
     if (argv[i + 1]) {
       current.first = std::atoi(argv[i++]);
       current.second = std::atoi(argv[i]);
-    } else
-      continue;
+    } else break;
     if (current.first < current.second)
       swap(current.first, current.second);
     cont.push_back(current);
@@ -72,6 +73,29 @@ void mergeSort(Iterator first, Iterator last) {
     mergeSort<Iterator, Sequence>(first, mid);
     mergeSort<Iterator, Sequence>(mid, last);
     merge<Iterator, Sequence>(first, mid, last);
+  }
+}
+
+template <typename Container>
+void jakobFactory(Container& cont, size_t size) {
+  int j = 0;
+  int current = 0;
+  int prev = 0;
+  int tmp = 0;
+
+  cont.push_back(current);
+  for (size_t i = 0; i < size; ++i) {
+    prev = current;
+    current = pow(2, j++) - current;
+    if (current != prev)
+      cont.push_back(current);
+    tmp = current - 1;
+    if (prev == current)
+      continue;
+    while (i < size && tmp != prev) {
+      cont.push_back(tmp--);
+      i++;
+    }
   }
 }
 
