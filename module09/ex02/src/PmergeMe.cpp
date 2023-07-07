@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/06 18:56:52 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 08:50:14 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ PmergeMe::PmergeMe(int argc, char **argv)
     _strag = new int;
     *_strag = std::atoi(argv[argc - 1]);
   }
-  _begins.first = fillContainer(argv, argc, _vec);
-  _begins.second = fillContainer(argv, argc, _dq);
+  _begins.first = initSortedPairs(argv, argc, _vec);
+  _begins.second = initSortedPairs(argv, argc, _dq);
   std::cout << "Before: ";
   for (int i = 0; i < argc; ++i) {
     std::istringstream(std::string(argv[i])) >> num;
@@ -51,43 +51,43 @@ PmergeMe&  PmergeMe::operator=(const PmergeMe& rhs) {
 }
 
 void PmergeMe::mergeAndInsertVec(void) {
-  std::vector<int> vec_res;
+  int_vec res;
   clock_t start;
   float time;
 
   start = clock();
   mergeSort<pair_vec::iterator, pair_vec >(_vec.begin(), _vec.end());
   for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
-    vec_res.push_back(it->first);
+    res.push_back(it->first);
   for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
-    insertIntoContainer(vec_res, it->second);
+    bnSort<int_vec, int_vec::iterator>(res, res.begin(), res.end(),it->second);
   if (_strag != NULL)
-    insertIntoContainer(vec_res, *_strag);
+    bnSort<int_vec, int_vec::iterator>(res, res.begin(), res.end(), *_strag);
   time = ((clock() - start) + _begins.first) * 1000000 / CLOCKS_PER_SEC ;
-  std::cout << "After: ";
-  for (size_t i = 0; i < vec_res.size(); ++i)
-    std::cout << vec_res[i] << " ";
+  std::cout << "After:  ";
+  for (size_t i = 0; i < res.size(); ++i)
+    std::cout << res[i] << " ";
   std::cout << std::endl;
-  std::cout << "Time to process a range of " << vec_res.size();
+  std::cout << "Time to process a range of " << res.size();
   std::cout << " elements with std::vector : " << std::fixed << time;
   std::cout << " us" << std::endl;
 }
 
 void PmergeMe::mergeAndInsertDq(void) {
-  std::deque<int> dq_res;
+  int_dq res;
   clock_t start;
   float time;
 
   start = clock();
   mergeSort<pair_dq::iterator, pair_dq>(_dq.begin(), _dq.end());
   for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
-    dq_res.push_back(it->first);
+    res.push_back(it->first);
   for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
-    insertIntoContainer(dq_res, it->second);
+    bnSort<int_dq, int_dq::iterator>(res, res.begin(), res.end(),it->second);
   if (_strag != NULL)
-    insertIntoContainer(dq_res, *_strag);
+    bnSort<int_dq, int_dq::iterator>(res, res.begin(), res.end(), *_strag);
   time = ((clock() - start) + _begins.second) * 1000000 / CLOCKS_PER_SEC;
-  std::cout << "Time to process a range of " << dq_res.size();
+  std::cout << "Time to process a range of " << res.size();
   std::cout << " elements with std::deque : " << std::fixed << time;
   std::cout << " us" << std::endl;
 }

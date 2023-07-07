@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Utils.hpp                                          :+:      :+:    :+:   */
+/*   Algorithm.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/06 18:28:10 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/06 20:11:54 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 08:51:11 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-# include "PmergeMe.hpp"
+# include <ctime>
+# include <cstdlib>
+
+bool operator<=(const std::pair<int, int> left,
+  const std::pair<int, int> right);
 
 template<typename T>
 void swap(T& a, T& b) {
@@ -23,7 +27,7 @@ void swap(T& a, T& b) {
 }
 
 template <typename Container>
-clock_t fillContainer(char *argv[], int argc, Container& cont) {
+clock_t initSortedPairs(char *argv[], int argc, Container& cont) {
   std::pair<int, int> current;
   clock_t start;
 
@@ -72,15 +76,15 @@ void mergeSort(Iterator first, Iterator last) {
 }
 
 template <typename Container, typename Iterator>
-void binarySearch(Container c, Iterator first, Iterator last, int val) {
-  Container::Iterator mid = first;
+void bnSort(Container& c, Iterator first, Iterator last, int val) {
+  Iterator mid = first;
 
   std::advance(mid, std::distance(first, last) / 2);
   if (std::distance(first, last) == 1) {
-    if (first < val) ? c.insert(first, val) : c.insert(first - 1, val);
+    (*first > val) ? c.insert(first, val) : c.insert(first + 1, val);
     return;
   }
-  if (*mid > val) ? binarySearch(c, first, mid) : binarySearch(c, mid, last);
+  (*mid > val) ? bnSort(c, first, mid, val) : bnSort(c, mid, last, val);
 }
 
 template <typename Container>

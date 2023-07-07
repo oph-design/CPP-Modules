@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:07:57 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/06 18:47:48 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 08:44:18 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,16 @@
 # include <sstream>
 # include <ctime>
 # include <cstdlib>
-# include "Utils.hpp"
+
+# include "Algorithm.hpp"
+
+typedef std::deque< std::pair<int, int> > pair_dq;
+typedef std::vector< std::pair<int, int> > pair_vec;
+typedef std::vector<int> int_vec;
+typedef std::deque<int> int_dq;
 
 class PmergeMe {
  public:
-    typedef std::deque< std::pair<int, int> > pair_dq;
-    typedef std::vector< std::pair<int, int> > pair_vec;
     PmergeMe(void);
     PmergeMe(const PmergeMe &rhs);
     PmergeMe(int argc, char **argv);
@@ -37,11 +41,8 @@ class PmergeMe {
  private:
     pair_vec _vec;
     pair_dq _dq;
-    std::pair<clock_t, clock_t> _begins;
     int* _strag;
+    std::pair<clock_t, clock_t> _begins;
 };
-
-bool operator<=(const std::pair<int, int> left,
-                const std::pair<int, int> right);
 
 #endif
