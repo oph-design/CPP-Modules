@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/07 08:50:14 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 11:34:29 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,20 @@ PmergeMe&  PmergeMe::operator=(const PmergeMe& rhs) {
   *_strag = *(rhs._strag);
   this->_vec = rhs._vec;
   this->_dq = rhs._dq;
+  this->_begins = rhs._begins;
   return (*this);
 }
 
 void PmergeMe::mergeAndInsertVec(void) {
   int_vec res;
+  int_vec jakob;
   clock_t start;
   float time;
 
   start = clock();
+  jakobFactory(jakob, _vec.size());
   mergeSort<pair_vec::iterator, pair_vec >(_vec.begin(), _vec.end());
-  for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
-    res.push_back(it->first);
-  for (pair_vec::iterator it = _vec.begin(); it < _vec.end(); ++it)
-    bnSort<int_vec, int_vec::iterator>(res, res.begin(), res.end(),it->second);
+  insertionSort<int_vec, pair_vec>(res, jakob, _vec);
   if (_strag != NULL)
     bnSort<int_vec, int_vec::iterator>(res, res.begin(), res.end(), *_strag);
   time = ((clock() - start) + _begins.first) * 1000000 / CLOCKS_PER_SEC ;
@@ -75,15 +75,14 @@ void PmergeMe::mergeAndInsertVec(void) {
 
 void PmergeMe::mergeAndInsertDq(void) {
   int_dq res;
+  int_dq jakob;
   clock_t start;
   float time;
 
   start = clock();
+  jakobFactory(jakob, _dq.size());
   mergeSort<pair_dq::iterator, pair_dq>(_dq.begin(), _dq.end());
-  for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
-    res.push_back(it->first);
-  for (pair_dq::iterator it = _dq.begin(); it < _dq.end(); ++it)
-    bnSort<int_dq, int_dq::iterator>(res, res.begin(), res.end(),it->second);
+  insertionSort<int_dq, pair_dq>(res, jakob, _dq);
   if (_strag != NULL)
     bnSort<int_dq, int_dq::iterator>(res, res.begin(), res.end(), *_strag);
   time = ((clock() - start) + _begins.second) * 1000000 / CLOCKS_PER_SEC;
