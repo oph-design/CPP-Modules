@@ -21,15 +21,16 @@
 # include <sstream>
 # include <cstdlib>
 # include <cmath>
+# include <ctime>
 
 class BitcoinExchange {
  private:
-  std::multimap<int, float> _content;
-  std::multimap<int, float> _data;
-  void calcAmount(std::pair<int, float> set);
-  static std::multimap<int, float> convertData(void);
+  std::map<int, float> _data;
+  std::ifstream _file;
+  void calcAmount(int date, float amount);
+  static std::map<int, float> convertData(void);
   static std::string formatDate(int date);
-  static bool edgeTheCases(std::pair<int, float> set);
+  static bool edgeTheCases(int date, float amount);
 
  public:
   BitcoinExchange(void);
@@ -38,7 +39,6 @@ class BitcoinExchange {
   ~BitcoinExchange(void);
   BitcoinExchange& operator=(const BitcoinExchange& rhs);
   void calcBitcoinExchange(void);
-  std::multimap<int, float> getContent(void) const;
 };
 
 // std::ostream& operator<<(std::ostream& out, const BitcoinExchange& rhs);

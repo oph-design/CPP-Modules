@@ -6,56 +6,39 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:16:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/17 16:42:30 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 19:03:19 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(void)
-  : _content(std::multimap<int, float>()), _data(convertData()) {}
+BitcoinExchange::BitcoinExchange(void) : _data(convertData()) {}
 
 BitcoinExchange::BitcoinExchange(std::string filename) : _data(convertData()) {
-  _content = std::multimap<int, float>();
-  std::ifstream file(filename.c_str());
-  std::string input;
-  std::string helper;
-  int date;
-  float value;
-
-  if (!file.is_open())
+  _file.open(filename.c_str());
+  if (!_file.is_open())
     throw std::runtime_error("Error: could not open file");
-  while (std::getline(file, input)) {
-    if (input.at(0) == '\n' || !input.compare("date | value"))
-      continue;
-    if (input.find("|") == input.npos) {
-      _content.insert(std::pair<int, float>(std::atoi(input.c_str()), 0));
-      continue;
-    }
-    input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
-    helper = input.substr(0, input.find("|"));
-    helper.erase(std::remove(helper.begin(), helper.end(), '-'), helper.end());
-    date = std::atoi(helper.c_str());
-    value = std::atof(input.substr(input.find("|") + 1).c_str());
-    _content.insert(std::pair<int, float>(date, value));
-  }
-  file.close();
 }
 
-std::multimap<int, float> BitcoinExchange::convertData(void) {
+std::map<int, float> BitcoinExchange::convertData(void) {
+  struct tm dummy;
   std::ifstream file("data.csv");
-  std::multimap<int, float> res;
+  std::map<int, float> res;
   std::string input;
   int date;
   float value;
 
   while(std::getline(file, input)) {
-   if (!input.compare("date,exchange_rate"))
-       continue;
-   input.erase(std::remove(input.begin(), input.end(), '-'), input.end());
-   date = std::atoi(input.substr(0, input.find(",")).c_str());
-   value = std::atof(input.substr(input.find(",") + 1).c_str());
-   res.insert(std::pair<int, float>(date, value));
+    if (input.empty() || !input.compare("date,exchange_rate"))
+      continue;
+    if (input.find(",") == input.npos)
+      throw std::runtime_error("database format error");
+    input.erase(std::remove(input.begin(), input.end(), '-'), input.end());
+    date = std::atoi(input.substr(0, input.find(",")).c_str());
+    if (!strptime(formatDate(date).c_str(), "%Y-%m-%d", &dummy))
+      throw std::runtime_error("wrong date format");
+    value = std::atof(input.substr(input.find(",") + 1).c_str());
+    res.insert(std::pair<int, float>(date, value));
   }
   return (res);
 }
@@ -64,16 +47,13 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& rhs) {
   *this = rhs;
 }
 
-BitcoinExchange::~BitcoinExchange(void) {}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
-  this->_content = rhs._content;
-  this->_data = rhs._data;
-  return (*this);
+BitcoinExchange::~BitcoinExchange(void) {
+  _file.close();
 }
 
-std::multimap<int, float> BitcoinExchange::getContent(void) const {
-  return (this->_content);
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& rhs) {
+  this->_data = rhs._data;
+  return (*this);
 }
 
 std::string BitcoinExchange::formatDate(int date) {
@@ -81,56 +61,62 @@ std::string BitcoinExchange::formatDate(int date) {
   raw << date;
   std::string res = raw.str();
 
+  if (res.length() < 7)
+    return (res);
   res.insert(4, "-");
   res.insert(7, "-");
   return (res);
 }
 
-bool BitcoinExchange::edgeTheCases(std::pair<int, float> set) {
-  if (set.first % 100 > 31 || (set.first / 100) % 100 > 12
-      || set.first % 100 == 0 ||  (set.first / 100) % 100 == 0) {
-    std::cout << "Error: bad input => " << formatDate(set.first) << "\n";
+bool BitcoinExchange::edgeTheCases(int date, float amount) {
+  struct tm dummy;
+
+  if (!strptime(formatDate(date).c_str(), "%Y-%m-%d", &dummy)) {
+    std::cout << "Error: bad input => " << formatDate(date) << "\n";
     return (false);
   }
-  if (set.second < 0) {
+  if (amount < 0) {
     std::cout << "Error: not a positive number\n";
     return (false);
   }
-  if (set.second > 1000) {
+  if (amount > 1000) {
     std::cout << "Error: too large a number\n";
     return (false);
   }
   return (true);
 }
 
-void BitcoinExchange::calcAmount(std::pair<int, float> set) {
-  if (!edgeTheCases(set))
+void BitcoinExchange::calcAmount(int date, float amount) {
+  if (!edgeTheCases(date, amount))
     return;
-  std::multimap<int, float>::iterator it = _data.begin();
-  while (it != _data.end()) {
-    if (it->first < set.first) {
-      it++; continue;
-    }
-    if (it->first == set.first)
-      break;
+  std::map<int, float>::iterator it = _data.begin();
+  while (it != _data.end() && it->first < date)
+    it++;
+  if (it->first < date)
     it--;
-    break;
-  }
-  std::cout << formatDate(set.first) << " => " << set.second;
-  std::cout << " " << (set.second * it->second) << "\n";
+  std::cout << formatDate(date) << " => " << amount;
+  std::cout << " " << (amount * it->second) << "\n";
 }
 
 void BitcoinExchange::calcBitcoinExchange(void) {
-  for (std::multimap<int, float>::iterator it = _content.begin();
-      it != _content.end(); ++it) {
-    this->calcAmount(*it);
+  int date;
+  float amount;
+  std::string input;
+  std::string helper;
+
+  while (std::getline(_file, input)) {
+    if (input.empty() || !input.compare("date | value"))
+      continue;
+    if (input.find("|") == input.npos) {
+      input.erase(std::remove(input.begin(), input.end(), '-'), input.end());
+      this->calcAmount(std::atoi(input.c_str()), 0);
+      continue;
+    }
+    input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
+    helper = input.substr(0, input.find("|"));
+    helper.erase(std::remove(helper.begin(), helper.end(), '-'), helper.end());
+    date = std::atoi(helper.c_str());
+    amount = std::atof(input.substr(input.find("|") + 1).c_str());
+    this->calcAmount(date, amount);
   }
 }
-
-// std::ostream& operator<<(std::ostream& out, const BitcoinExchange& rhs) {
-//   std::multimap<int, float> content = rhs.getContent();
-//   for (std::map<int, float>::iterator it = content.begin();
-//         it != content.end(); ++it)
-//     out << it->first << " | " << it->second << std::endl;
-//   return (out);
-// }
