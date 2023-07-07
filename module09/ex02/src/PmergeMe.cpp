@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 21:08:05 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/07 14:37:22 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/07 14:57:26 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ PmergeMe::PmergeMe(int argc, char **argv)
   : _vec(pair_vec()), _dq(pair_dq()), _strag(NULL) {
   int num;
 
+  _begins.first = initSortedPairs(argv, argc, _vec);
+  _begins.second = initSortedPairs(argv, argc, _dq);
   if (argc % 2 != 0) {
     _strag = new int;
     *_strag = std::atoi(argv[argc - 1]);
   }
-  _begins.first = initSortedPairs(argv, argc, _vec);
-  _begins.second = initSortedPairs(argv, argc, _dq);
   std::cout << "Before: ";
   for (int i = 0; i < argc; ++i) {
     std::istringstream(std::string(argv[i])) >> num;
