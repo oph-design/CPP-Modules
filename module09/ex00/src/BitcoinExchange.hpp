@@ -27,10 +27,10 @@ class BitcoinExchange {
  private:
   std::map<int, float> _data;
   std::ifstream _file;
-  void calcAmount(int date, float amount);
+  void calcAmount(std::string date, float amount);
   static std::map<int, float> convertData(void);
-  static std::string formatDate(int date);
-  static bool edgeTheCases(int date, float amount);
+  static int dateToInt(std::string date);
+  static bool checkInput(std::string date, float amount);
 
  public:
   BitcoinExchange(void);
@@ -40,7 +40,5 @@ class BitcoinExchange {
   BitcoinExchange& operator=(const BitcoinExchange& rhs);
   void calcBitcoinExchange(void);
 };
-
-// std::ostream& operator<<(std::ostream& out, const BitcoinExchange& rhs);
 
 #endif

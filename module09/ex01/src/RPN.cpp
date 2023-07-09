@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 14:57:23 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/06/16 18:28:37 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/09 11:46:58 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ RPN::RPN(std::string input) : _nums(std::stack<int>()) {
     else if (*it != ' ')
       throw std::runtime_error("Error");
   }
+  while (this->_nums.size() != 1)
+    this->_nums.pop();
 }
 
 RPN::~RPN(void) {}
@@ -51,6 +53,8 @@ int RPN::calcNext(char c) {
   this->_nums.pop();
   int m = this->_nums.top();
   this->_nums.pop();
+  if (!n && c == '/')
+   throw std::runtime_error("Error");
   switch (c) {
     case '+':
       return (m + n);
