@@ -6,7 +6,7 @@
 /*   By: oheinzel <oheinzel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:16:21 by oheinzel          #+#    #+#             */
-/*   Updated: 2023/07/09 12:39:11 by oheinzel         ###   ########.fr       */
+/*   Updated: 2023/07/09 12:52:10 by oheinzel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void BitcoinExchange::calcAmount(std::string date, float amount) {
   }
   while (it != _data.end() && it->first < date_val)
     it++;
-  if (it->first < date_val)
+  if (it->first != date_val)
     it--;
   std::cout << date << " => " << amount;
   std::cout << " " << (amount * it->second) << "\n";
@@ -104,13 +104,13 @@ void BitcoinExchange::calcBitcoinExchange(void) {
   std::string input;
 
   while (std::getline(_file, input)) {
-    if (input.empty() || !input.compare("date | value"))
+    input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
+    if (input.empty() || !input.compare("date|value"))
       continue;
     if (input.find("|") == input.npos) {
       this->calcAmount(input, 0);
       continue;
     }
-    input.erase(std::remove(input.begin(), input.end(), ' '), input.end());
     date = input.substr(0, input.find("|"));
     amount = std::atof(input.substr(input.find("|") + 1).c_str());
     this->calcAmount(date, amount);
