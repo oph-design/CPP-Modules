@@ -27,8 +27,8 @@ RPN::RPN(std::string input) : _nums(std::stack<int>()) {
     else if (*it != ' ')
       throw std::runtime_error("Error");
   }
-  while (this->_nums.size() != 1)
-    this->_nums.pop();
+  if (this->_nums.size() != 1)
+    throw std::runtime_error("Error");
 }
 
 RPN::~RPN(void) {}
