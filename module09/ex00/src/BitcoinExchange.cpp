@@ -95,7 +95,7 @@ void BitcoinExchange::calcAmount(std::string date, float amount) {
   if (it->first != date_val)
     it--;
   std::cout << date << " => " << amount;
-  std::cout << " " << (amount * it->second) << "\n";
+  std::cout << " = " << (amount * it->second) << "\n";
 }
 
 void BitcoinExchange::calcBitcoinExchange(void) {
