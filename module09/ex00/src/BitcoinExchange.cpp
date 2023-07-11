@@ -46,6 +46,8 @@ std::map<int, float> BitcoinExchange::convertData(void) {
   std::string date;
   float value;
 
+  if (!file.is_open())
+    throw std::runtime_error("Error: could not open database");
   while(std::getline(file, input)) {
     if (input.empty() || !input.compare("date,exchange_rate"))
       continue;
