@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The CPP Piscine is a series of projects designed by Ecole 42 to a fooring in CPP-Programming. </br>It's comprised of 10 very small projects with exercises each. </br>To get the task of each execise read the <a href="https://github.com/oph-design/CPP-Modules/tree/main/subjects">subject sheats</a>.
+The CPP Piscine is a series of projects designed by Ecole 42 to learn CPP-Programming. </br>It's comprised of 10 very small projects with a couple of exercises each. </br>To get the task of each execise read the <a href="https://github.com/oph-design/CPP-Modules/tree/main/subjects">subject sheats</a>.
 
 
 <!-- GETTING STARTED -->
