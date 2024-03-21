@@ -36,7 +36,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-The CPP Piscine is a series of projects designed by Ecole 42 to a fooring in CPP-Programming. </br>It's comprised of 10 very small projects with exercises each. To get the task of each execise read the subject sheats.
+The CPP Piscine is a series of projects designed by Ecole 42 to a fooring in CPP-Programming. </br>It's comprised of 10 very small projects with exercises each. To get the task of each execise read the <a href="https://github.com/oph-design/CPP-Modules/tree/main/subjects">subject sheats</a>.
 
 
 <!-- GETTING STARTED -->
@@ -59,7 +59,7 @@ You need to have make and c++ installed. For mac you need also xcode to perform 
   
 ### Usage
 
-To execute the programs you to navigate into each exercise folder, make the executable and use the program as described in the subject sheat.
+To execute the programs you to navigate into each exercise folder, make the executable and use the program as described in the <a href="https://github.com/oph-design/CPP-Modules/tree/main/subjects">subject sheat</a>.
 
 
 ## Contact
